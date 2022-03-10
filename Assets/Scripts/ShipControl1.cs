@@ -18,10 +18,12 @@ public class ShipControl1 : MonoBehaviour
 	// Cached component references
 	private Transform _shipTransform;
 	private Rigidbody2D _shipRB;
+	private GameController _gameController;
 
 	void Start ()
 	{
 		// Cache components we need here
+		_gameController = GameObject.Find("GameManager").GetComponent<GameController>();
 		_shipTransform = transform;
 		_shipRB = GetComponent<Rigidbody2D>();
 		_Camera = Camera.main;
@@ -29,6 +31,10 @@ public class ShipControl1 : MonoBehaviour
 
 	void Update()
 	{
+		//Only update if the current game state is Playing
+		if (_gameController.GetState() != GameController.EGameState.Playing)
+			return;
+
 		// Get the vertical axis.
 		// The value is in the range -1 to 1
 		float translationy = Input.GetAxis("Vertical") * movementSpeed;

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
 
     private static GameController _gameController = null;
+    public int score = 0;
 
     public enum EGameState
     {
@@ -27,7 +29,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ChangeState(EGameState.MainMenu);
     }
 
     // Update is called once per frame
@@ -36,6 +38,11 @@ public class GameController : MonoBehaviour
         switch (_eGameState)
         {
             case EGameState.MainMenu:
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    RestartGame();
+                    ChangeState(EGameState.Playing);
+                }
                 break;
 
             case EGameState.Playing:
@@ -89,5 +96,25 @@ public class GameController : MonoBehaviour
         }
         // Set our state to the new state
         _eGameState = eGameState;
+    }
+
+    private void RestartGame()
+    {
+
+        //Check whether there is already an active Game scene. If so, unload it.
+        if (SceneManager.sceneCount > 1)
+        {
+            Debug.Log("Unloading Game Scene");
+            SceneManager.UnloadSceneAsync("Game");
+        }
+
+        //Load a new game scene, resetting all assets within it
+        SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+
+
+    }
+    public EGameState GetState()
+    {
+        return _eGameState;
     }
 }
