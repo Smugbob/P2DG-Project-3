@@ -63,7 +63,10 @@ public class GameController : MonoBehaviour
                 throw new System.ArgumentOutOfRangeException();
         }
 
-
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
 
     }
     public void ChangeState(EGameState eGameState)
