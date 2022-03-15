@@ -12,7 +12,7 @@ public class ShipControl1 : MonoBehaviour
 
 	private void Awake()
 	{
-		
+
 	}
 
 	// Cached component references
@@ -20,7 +20,7 @@ public class ShipControl1 : MonoBehaviour
 	private Rigidbody2D _shipRB;
 	private GameController _gameController;
 
-	void Start ()
+	void Start()
 	{
 		// Cache components we need here
 		_gameController = GameObject.Find("GameManager").GetComponent<GameController>();
@@ -63,5 +63,9 @@ public class ShipControl1 : MonoBehaviour
 		}*/
 	}
 
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+	}
 }
 
