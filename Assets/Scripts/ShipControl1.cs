@@ -27,6 +27,9 @@ public class ShipControl1 : MonoBehaviour
 		_shipTransform = transform;
 		_shipRB = GetComponent<Rigidbody2D>();
 		_Camera = Camera.main;
+
+		//Change Scene from Management to Game
+		SceneManager.SetActiveScene(gameObject.scene);
 	}
 
 	void Update()

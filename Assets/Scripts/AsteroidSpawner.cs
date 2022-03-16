@@ -52,7 +52,7 @@ public class AsteroidSpawner : MonoBehaviour
         Debug.Assert(_camera, this.gameObject);
 
         //Change Scene from Management to Game
-        SceneManager.SetActiveScene(gameObject.scene);
+        //SceneManager.SetActiveScene(gameObject.scene);
 
         //spawnRandomAsteroid called 'spawnTime' seconds after start, every 'spawnDelay' amount of seconds elapsed
         InvokeRepeating("spawnRandomAsteroid", spawnTime, spawnDelay);
