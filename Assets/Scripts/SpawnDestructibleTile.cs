@@ -12,7 +12,7 @@ public class SpawnDestructibleTile : MonoBehaviour
     private GameObject objectPrefab1;
     [SerializeField]
     private GameObject objectPrefab2;
-    private int chance = 0;
+    private int rand = 0;
     private bool spawned = false;
     // Start is called before the first frame update
     void Start()
@@ -37,8 +37,8 @@ public class SpawnDestructibleTile : MonoBehaviour
     void spawnDestructible()
     {
         //50% chance to spawn object on tile
-        chance = Random.Range(0, 2);
-        if (chance == 1)
+        rand = Random.Range(0, 2);
+        if (rand == 1)
         {
             //two types of objects picked randomly between
             int objType = Random.Range(0, 2);

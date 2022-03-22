@@ -96,9 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62bb42c97843d5d4f8257d435c28e52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xspeed: 5
-  yspeed: 5
+  xspeed: 7
+  yspeed: 7
   health: 3
+  meleePrefab: {fileID: 3865905755980198526, guid: 05033820f75219f438f3a24d8d4c31d9,
+    type: 3}
+  rangedPrefab: {fileID: 4792491618433641989, guid: 970ce56ad6f215845aac30ee14723bcc,
+    type: 3}
+  attackRate: 1
+  attackTime: 1
 --- !u!60 &-4611682102354222565
 PolygonCollider2D:
   m_ObjectHideFlags: 0

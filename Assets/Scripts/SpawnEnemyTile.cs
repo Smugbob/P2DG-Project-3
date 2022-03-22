@@ -6,13 +6,16 @@ public class SpawnEnemyTile : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemyPrefab;
+    [SerializeField]
+    private GameObject enemyAlphaPrefab;
     private Transform _ourTransform;
     private Camera _camera;
     public float spawnTime;
     public float spawnDelay;
     [SerializeField]
-    [Range(1, 999)]
+    [Range(0, 999)]
     private int spawnCount;
+    private int rand = 0;
     private GameController _gameController;
 
     private void spawnEnemy()
@@ -33,8 +36,17 @@ public class SpawnEnemyTile : MonoBehaviour
         Vector3 randomWorldPos = _camera.ScreenToWorldPoint(randomCamPoint);
         */
 
-        //instantiate object prefab with created coordinates and rotation
-        GameObject createdAsteroid = Instantiate(enemyPrefab, _ourTransform.position, _ourTransform.rotation);
+        rand = Random.Range(0, 10);
+        if (rand == 1)
+        {
+            //instantiate object prefab with created coordinates and rotation
+            GameObject createdAlphaEnemy = Instantiate(enemyAlphaPrefab, _ourTransform.position, _ourTransform.rotation);
+        }
+        else
+        {
+            GameObject createdEnemy = Instantiate(enemyPrefab, _ourTransform.position, _ourTransform.rotation);
+        }
+            
 
         //decrement spawn count, override finite spawning if 999
         if (!(spawnCount == 999))
@@ -54,10 +66,13 @@ public class SpawnEnemyTile : MonoBehaviour
         _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
         Debug.Assert(_camera, this.gameObject);
 
-        
+
 
         //spawnRandomAsteroid called 'spawnTime' seconds after start, every 'spawnDelay' amount of seconds elapsed
-        InvokeRepeating("spawnEnemy", spawnTime, spawnDelay);
+        if (spawnCount != 0)
+        {
+            InvokeRepeating("spawnEnemy", spawnTime, spawnDelay);
+        }
     }
 
     // Update is called once per frame
