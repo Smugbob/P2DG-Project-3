@@ -43,12 +43,15 @@ public class ShipControl1 : MonoBehaviour
 		float translationy = Input.GetAxis("Vertical") * movementSpeed;
 		float translationx = Input.GetAxis("Horizontal") * movementSpeed;
 
+		float rotation = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
+
 		// Make it move x meters per second instead of x meters per frame
 		translationx *= Time.deltaTime;
 		translationy *= Time.deltaTime;
 
 		Vector2 moveposition = _shipTransform.position + new Vector3(translationx, translationy);
 		_shipRB.MovePosition(moveposition);
+		
 
 		// Add force to the upwards direction of the object * speed * input [-1,1]
 		//_shipRB.AddForce(transform.up * translation);
