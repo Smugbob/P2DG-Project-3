@@ -7,7 +7,6 @@ TagManager:
   - Asteroid
   - Laser
   - Wall
-  - breakable_objs
   layers:
   - Default
   - TransparentFX

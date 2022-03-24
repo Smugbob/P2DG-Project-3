@@ -22,9 +22,9 @@ public class LaserProjectile : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Asteroid"))
@@ -32,5 +32,5 @@ public class LaserProjectile : MonoBehaviour
             //Destroy(gameObject);
         }
     }
-    
+
 }
