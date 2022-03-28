@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserProjectile : MonoBehaviour
+public class Player_Melee : MonoBehaviour
 {
     private Transform _transform;
-    [SerializeField] private float KProjectileMoveSpeed = 10.0f;
+    [SerializeField] private float KSlashMoveSpeed = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +15,7 @@ public class LaserProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 translateAmount = Vector3.up * (Time.deltaTime * KProjectileMoveSpeed);
+        Vector3 translateAmount = Vector3.up * (Time.deltaTime * KSlashMoveSpeed);
 
         _transform.Translate(-translateAmount);
     }

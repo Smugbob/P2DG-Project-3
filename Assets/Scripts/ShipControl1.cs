@@ -9,6 +9,7 @@ public class ShipControl1 : MonoBehaviour
 	[SerializeField] private float rotationSpeed;
 	private Camera _Camera;
 	[SerializeField] private GameObject Laser;
+	[SerializeField] private GameObject Slash;
 
 	private void Awake()
 	{
@@ -59,6 +60,8 @@ public class ShipControl1 : MonoBehaviour
 			GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
 		}
 
+		melee_attack();
+
 		//player faces direction of movement
 		player_direction();
 
@@ -86,6 +89,15 @@ public class ShipControl1 : MonoBehaviour
 		{
 			Vector3 right_pos = new Vector3(180, 0, 90);
 			transform.eulerAngles = right_pos;
+		}
+	}
+
+	private void melee_attack()
+    {
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
+			GameObject CreatedSlash = Instantiate(Slash, transform.position, transform.rotation);
+			Destroy(CreatedSlash, 0.2f);
 		}
 	}
 

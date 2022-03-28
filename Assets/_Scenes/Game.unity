@@ -9365,6 +9365,7 @@ MonoBehaviour:
   movementSpeed: 25
   rotationSpeed: 0
   Laser: {fileID: 8237124370223055189, guid: 8a6f48f5ff15fb04283b367d155783d9, type: 3}
+  Slash: {fileID: 4987632800618653481, guid: ec56f43e5e34aa64ea2edaba8ef5bd36, type: 3}
 --- !u!82 &1416030114
 AudioSource:
   m_ObjectHideFlags: 0
