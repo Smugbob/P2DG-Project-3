@@ -17,7 +17,7 @@ public class LaserProjectile : MonoBehaviour
     {
         Vector3 translateAmount = Vector3.up * (Time.deltaTime * KProjectileMoveSpeed);
 
-        _transform.Translate(translateAmount);
+        _transform.Translate(-translateAmount);
     }
 
     private void OnBecameInvisible()
@@ -27,10 +27,19 @@ public class LaserProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Asteroid"))
+        if (other.CompareTag("Enemy"))
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy hit");
+            Destroy(GameObject.Find("Enemy"));
+            Destroy(GameObject.Find("Alpha Enemy"));
+        }
+    }
 }

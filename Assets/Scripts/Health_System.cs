@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////// This code was implemented following a tutorial from Bernard Polidario - 28th May 2021, on weeklyhow.com //////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,6 +38,19 @@ public class Health_System : MonoBehaviour
     {
         current_health -= damage;
         healthBar.set_health(current_health);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("damage taken");
+            take_damage(10);
+            if (current_health == 0)
+            {
+                Debug.Log("You have died");
+            }
+        }
     }
 }
 ///test comment ignore

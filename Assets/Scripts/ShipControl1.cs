@@ -49,47 +49,45 @@ public class ShipControl1 : MonoBehaviour
 		Vector2 moveposition = _shipTransform.position + new Vector3(translationx, translationy);
 		_shipRB.MovePosition(moveposition);
 
-		// Rotate around our z-axis
-		_shipTransform.Rotate(0, 0, -rotation);
-
 		//camera follows player
 		Vector3 camera_pos = new Vector3(transform.position.x, transform.position.y, _Camera.transform.position.z);
 		_Camera.transform.position = camera_pos;
 
 		//spawn laser
-		if (Input.GetKeyDown(KeyCode.Z))
+		if (Input.GetKeyDown(KeyCode.X))
 		{
 			GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
 		}
 
 		//player faces direction of movement
+		player_direction();
+
+	}
+
+	private void player_direction()
+    {
+		//player faces direction of movement
 		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 		{
-			Vector3 up_pos = new Vector3(0, 0, 0);
+			Vector3 up_pos = new Vector3(180, 0, 0);
 			transform.eulerAngles = up_pos;
 		}
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
-			Vector3 left_pos = new Vector3(0, 0, 90);
+			Vector3 left_pos = new Vector3(180, 0, -90);
 			transform.eulerAngles = left_pos;
 		}
 		if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
 		{
-			Vector3 down_pos = new Vector3(0, 0, 180);
+			Vector3 down_pos = new Vector3(180, 0, 180);
 			transform.eulerAngles = down_pos;
 		}
 		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
-			Vector3 right_pos = new Vector3(0, 0, -90);
+			Vector3 right_pos = new Vector3(180, 0, 90);
 			transform.eulerAngles = right_pos;
 		}
-
-
-
-
-
 	}
-
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{

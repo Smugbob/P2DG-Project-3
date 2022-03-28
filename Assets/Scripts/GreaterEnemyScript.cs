@@ -182,5 +182,20 @@ public class GreaterEnemyScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Laser"))
+        {
+
+            // if (asteroidT == AsteroidType.Large)
+            // {
+            Destroy(other.gameObject);
+            Debug.Log("Hit");
+            Destroy(gameObject);
+
+
+
+            //Destroy(other);
+            // }
+            // if (asteroidT == AsteroidType.Small) Destroy(gameObject);
+        }
     }
 }
