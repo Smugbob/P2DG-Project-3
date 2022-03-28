@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class ShipControl : MonoBehaviour
@@ -13,6 +13,8 @@ public class ShipControl : MonoBehaviour
 	private float rotationSpeed;
 	[SerializeField]
 	private GameObject bulletPrefab;
+	public int playerAttack = 1;
+	
 
 	private void Awake()
 	{

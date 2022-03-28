@@ -24,13 +24,18 @@ public class LesserEnemyScript : MonoBehaviour
     private float attackRate;
     [SerializeField]
     private float attackTime;
+    private float minDist = 1.0f;
+    private int rand = 0;
+    [SerializeField]
+    private int damage = 1;
+    private bool attacking = false;
 
     private enum attackType
     {
         Melee,
         Ranged
     }
-    private attackType attack = attackType.Melee;
+    private attackType attack;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +48,28 @@ public class LesserEnemyScript : MonoBehaviour
         _RB = GetComponent<Rigidbody2D>();
         direction = transform.TransformDirection(Vector2.up);
 
-        InvokeRepeating("meleeAttack", attackTime, attackRate);
+        rand = Random.Range(0, 3);
+        if (rand == 1)
+        {
+            attack = attackType.Ranged;
+        }
+        else
+        {
+            attack = attackType.Melee;
+        }
+
+        if (attack == attackType.Melee)
+        {
+            minDist = 2.0f;
+            //InvokeRepeating("meleeAttack", attackTime, attackRate);
+        }
+        else
+        {
+            minDist = 4.0f;
+            //InvokeRepeating("rangedAttack", attackTime * 2, attackRate);
+        }
+
+        InvokeRepeating("useAttack", attackTime, attackRate);
     }
 
     // Update is called once per frame
@@ -53,9 +79,70 @@ public class LesserEnemyScript : MonoBehaviour
         if (_gameController.GetState() != GameController.EGameState.Playing)
             return;
         move();
+
+        /*
+        if (attack == attackType.Melee)
+        {
+            if ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist) && (attacking = false))
+            {
+                attacking = true;
+                InvokeRepeating("meleeAttack", attackTime, attackRate);
+            }
+
+            if ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist) && (attacking = true))
+            {
+                attacking = true;
+            }
+
+            if ((Vector3.Distance(_playerTransform.position, _transform.position) > minDist) && (attacking = true))
+            {
+                attacking = false;
+                CancelInvoke("meleeAttack");
+            }
+        }
+
+        if (attack == attackType.Ranged)
+        {
+            if ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist) && (attacking = false))
+            {
+                attacking = true;
+                InvokeRepeating("rangedAttack", attackTime, attackRate * 2);
+            }
+
+            if ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist) && (attacking = true))
+            {
+                attacking = true;
+            }
+
+            if ((Vector3.Distance(_playerTransform.position, _transform.position) > minDist) && (attacking = true))
+            {
+                attacking = false;
+                CancelInvoke("rangedAttack");
+            }
+        }
+        */
+
+
+
         
 
+    }
 
+    void useAttack()
+    {
+        if ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist)) {
+            if (attack == attackType.Melee)
+            {
+                meleeAttack();
+            }
+        }
+
+        if ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist * 2)) {
+            if (attack == attackType.Ranged)
+            {
+                rangedAttack();
+            }
+        }
     }
 
     void move()
@@ -64,28 +151,69 @@ public class LesserEnemyScript : MonoBehaviour
         float translationy = yspeed;
 
         //get the distance between the enemy and the player
-        float xdist = _transform.position.x - _playerTransform.position.x;
-        float ydist = _transform.position.y - _playerTransform.position.y;
+        //float xdist = _transform.position.x - _playerTransform.position.x;
+        //float ydist = _transform.position.y - _playerTransform.position.y;
 
+        // Quaternion rotation = Quaternion.Euler(0, 0, getDirection()[0]);
+        // _transform.rotation = rotation;
+
+        /*
         //move left if to the right of the player
-        if (xdist >= 0)
+        if ((xdist >= -minDist) && (xdist <= minDist))
         {
-            translationx = -translationx;
+            translationy = 0;
+        }
+        else if (xdist > 0)
+        {
+            translationx = -xspeed;
+        }
+        if ((ydist >= -minDist) && (ydist <= minDist))
+        {
+            translationx = 0;
         }
         //move down if above the player
-        if (ydist >= 0)
+        else if (ydist > 0)
         {
-            translationy = -translationy;
+            translationy = -yspeed;
         }
+        */
+       // Vector3 targetPosFlattened = new Vector3(_playerTransform.position.x, _playerTransform.position.y, 0);
+        //_transform.LookAt(targetPosFlattened);
+        _transform.up = _playerTransform.position - _transform.position;
+        float step = yspeed * Time.deltaTime;
+        _transform.position = Vector2.MoveTowards(_transform.position, _playerTransform.position, step);
+        //Vector3 translateAmount = Vector3.up * (Time.deltaTime * yspeed);
+
+        //_transform.Translate(translateAmount);
 
         // Make it move x meters per second instead of x meters per frame
+        /*
         translationx *= Time.deltaTime;
         translationy *= Time.deltaTime;
         Vector2 moveposition = _transform.position + new Vector3(translationx, translationy);
         _RB.MovePosition(moveposition);
+        */
     }
 
     void meleeAttack()
+    {
+        GameObject createdAttack;
+        //get the distance between the enemy and the player
+        //float xdist = _transform.position.x - _playerTransform.position.x;
+        // float ydist = _transform.position.y - _playerTransform.position.y;
+
+        // xdist = Mathf.Abs(xdist);
+        // ydist = Mathf.Abs(ydist);
+
+        //Quaternion rotation = Quaternion.Euler(0, 0, getDirection()[0]);
+        //float startPosX = getDirection()[1];
+        // float startPosY = getDirection()[2];
+        createdAttack = Instantiate(meleePrefab, _transform.position, _transform.rotation);
+        createdAttack.transform.position += createdAttack.transform.up;
+        Destroy(createdAttack, 0.2f);
+    }
+
+    void rangedAttack()
     {
         //get the distance between the enemy and the player
         float xdist = _transform.position.x - _playerTransform.position.x;
@@ -93,22 +221,16 @@ public class LesserEnemyScript : MonoBehaviour
 
         xdist = Mathf.Abs(xdist);
         ydist = Mathf.Abs(ydist);
+        GameObject createdAttack;
 
-        Quaternion rotation = Quaternion.Euler(0, 0, getDirection()[0]);
-        float startPosX = getDirection()[1];
-        float startPosY = getDirection()[2];
-        GameObject createdAttack = Instantiate(meleePrefab, _transform.position + new Vector3(startPosX, startPosY, 0), rotation);
-        Destroy(createdAttack, 0.2f);
+        //Quaternion rotation = Quaternion.Euler(getDirection()[0] + 90, 90, 90);
+        createdAttack = Instantiate(rangedPrefab, _transform.position, _transform.rotation);
+        Destroy(createdAttack, 5);
     }
 
-    void rangedAttack()
+    public void takeDamage()
     {
-
-    }
-
-    void takeDamage()
-    {
-        health -= 1;
+        health -= _player.GetComponent<ShipControl1>().playerAttack;
         if (health == 0)
         {
             onDeath();
@@ -173,8 +295,8 @@ public class LesserEnemyScript : MonoBehaviour
                 // _direction = transform.TransformDirection(Vector2.right);
             }
         }
-        Debug.Log(xdist);
-        Debug.Log(ydist);
+        //Debug.Log(xdist);
+        //Debug.Log(ydist);
 
         
             

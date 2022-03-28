@@ -42,9 +42,12 @@ public class SpawnDestructibleTile : MonoBehaviour
         {
             //two types of objects picked randomly between
             int objType = Random.Range(0, 2);
-            
 
+
+            if (_gameController.GetState() != GameController.EGameState.Playing)
+                return;
             //instantiate object prefab with created coordinates and rotation
+
             if (objType == 0)
             {
                 GameObject createdObject = Instantiate(objectPrefab1, _transform.position, _transform.rotation);

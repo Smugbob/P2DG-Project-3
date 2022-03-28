@@ -9,6 +9,7 @@ public class ShipControl1 : MonoBehaviour
 	[SerializeField] private float rotationSpeed;
 	private Camera _Camera;
 	[SerializeField] private GameObject Laser;
+	public int playerAttack = 1;
 
 	private void Awake()
 	{
@@ -19,6 +20,7 @@ public class ShipControl1 : MonoBehaviour
 	private Transform _shipTransform;
 	private Rigidbody2D _shipRB;
 	private GameController _gameController;
+	
 
 	void Start()
 	{
@@ -27,9 +29,8 @@ public class ShipControl1 : MonoBehaviour
 		_shipTransform = transform;
 		_shipRB = GetComponent<Rigidbody2D>();
 		_Camera = Camera.main;
-
-		//Change Scene from Management to Game
-		SceneManager.SetActiveScene(gameObject.scene);
+		
+		
 	}
 
 	void Update()
@@ -43,6 +44,8 @@ public class ShipControl1 : MonoBehaviour
 		float translationy = Input.GetAxis("Vertical") * movementSpeed;
 		float translationx = Input.GetAxis("Horizontal") * movementSpeed;
 
+		float rotation = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
+
 		// Make it move x meters per second instead of x meters per frame
 		translationx *= Time.deltaTime;
 		translationy *= Time.deltaTime;
@@ -50,20 +53,45 @@ public class ShipControl1 : MonoBehaviour
 		Vector2 moveposition = _shipTransform.position + new Vector3(translationx, translationy);
 		_shipRB.MovePosition(moveposition);
 
-		// Add force to the upwards direction of the object * speed * input [-1,1]
-		//_shipRB.AddForce(transform.up * translation);
 		// Rotate around our z-axis
-		//_shipTransform.Rotate(0, 0, -rotation);
+		_shipTransform.Rotate(0, 0, -rotation);
 
 		//camera follows player
 		Vector3 camera_pos = new Vector3(transform.position.x, transform.position.y, _Camera.transform.position.z);
 		_Camera.transform.position = camera_pos;
 
 		//spawn laser
-		/*if (Input.GetKeyDown(KeyCode.Space))
-        {
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
 			GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
-		}*/
+		}
+
+		//player faces direction of movement
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+		{
+			Vector3 up_pos = new Vector3(0, 0, 0);
+			transform.eulerAngles = up_pos;
+		}
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+		{
+			Vector3 left_pos = new Vector3(0, 0, 90);
+			transform.eulerAngles = left_pos;
+		}
+		if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+		{
+			Vector3 down_pos = new Vector3(0, 0, 180);
+			transform.eulerAngles = down_pos;
+		}
+		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+		{
+			Vector3 right_pos = new Vector3(0, 0, -90);
+			transform.eulerAngles = right_pos;
+		}
+
+
+
+
+
 	}
 
 

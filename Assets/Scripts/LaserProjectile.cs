@@ -6,10 +6,12 @@ public class LaserProjectile : MonoBehaviour
 {
     private Transform _transform;
     [SerializeField] private float KProjectileMoveSpeed = 10.0f;
+    int damage = 1;
     // Start is called before the first frame update
     void Start()
     {
         _transform = GetComponent<Transform>();
+        //_transform.Rotate(Vector3.right, 90.f, 1);
     }
 
     // Update is called once per frame
@@ -22,15 +24,42 @@ public class LaserProjectile : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Asteroid"))
+        if (other.CompareTag("Wall"))
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
+
+        if ((other.CompareTag("Enemy") || other.CompareTag("Alpha")) && gameObject.CompareTag("Laser"))
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                other.GetComponent<LesserEnemyScript>().takeDamage();
+            }
+            else
+            {
+                other.GetComponent<GreaterEnemyScript>().takeDamage();
+            }
+            Destroy(gameObject);
+        }
+
+        if ((other.CompareTag("Crate") || other.CompareTag("Barrel")))
+        {
+            if (other.CompareTag("Crate"))
+            {
+                other.GetComponent<CrateScript>().takeDamage(damage);
+            }
+            else
+            {
+                other.GetComponent<BarrelScript>().takeDamage(damage);
+            }
+            Destroy(gameObject);
+        }
+
     }
-    
+
 }

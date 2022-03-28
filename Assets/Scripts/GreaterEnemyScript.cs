@@ -107,7 +107,7 @@ public class GreaterEnemyScript : MonoBehaviour
 
     }
 
-    void takeDamage()
+    public void takeDamage()
     {
         health -= 1;
         if (health == 0)
