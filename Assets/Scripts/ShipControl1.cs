@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class ShipControl1 : MonoBehaviour
@@ -34,6 +35,7 @@ public class ShipControl1 : MonoBehaviour
 		_Camera = Camera.main;
 
 		transform.GetChild(1).gameObject.SetActive(false);
+		
 
 
 	}
@@ -66,10 +68,19 @@ public class ShipControl1 : MonoBehaviour
 		_Camera.transform.position = camera_pos;
 
 		//spawn laser
-		if (Input.GetKeyDown(KeyCode.Z))
+		if (Input.GetKeyDown(KeyCode.X))
 		{
 			if (attacking == false)
 			{
+				int rand = Random.Range(0, 2);
+				if (rand == 1)
+				{
+					FindObjectOfType<AudioManager>().Play("playerranged1");
+				}
+				else
+				{
+					FindObjectOfType<AudioManager>().Play("playerranged2");
+				}
 				transform.GetChild(0).gameObject.SetActive(false);
 				transform.GetChild(1).gameObject.SetActive(true);
 				Invoke("changeBackModel", 0.5f);
@@ -79,13 +90,22 @@ public class ShipControl1 : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.X))
+		if (Input.GetKeyDown(KeyCode.Z))
 		{
 			if (attacking == false)
             {
+				int rand = Random.Range(0, 2);
+				if (rand == 1)
+				{
+					FindObjectOfType<AudioManager>().Play("playerattack1");
+				}
+				else
+				{
+					FindObjectOfType<AudioManager>().Play("playerattack2");
+				}
 				GameObject CreatedMelee = Instantiate(meleePrefab, transform.position, transform.rotation);
 				//CreatedMelee.transform.position += CreatedMelee.transform.up;
-				Destroy(CreatedMelee, 0.3f);
+				Destroy(CreatedMelee, 0.2f);
 				attacking = true;
 				Invoke("delayAttack", 0.3f);
 			}

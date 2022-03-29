@@ -28,6 +28,8 @@ public class GreaterEnemyScript : MonoBehaviour
     private int damage = 2;
     private bool attacking = false;
     private GameObject slainCount;
+    [SerializeField]
+    private GameObject potionPrefab;
 
 
     // Start is called before the first frame update
@@ -192,8 +194,18 @@ public class GreaterEnemyScript : MonoBehaviour
         // float startPosY = getDirection()[2];
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(true);
+        int rand = Random.Range(0, 2);
+        if (rand == 1) 
+        {
+            FindObjectOfType<AudioManager>().Play("alphaAttack1");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("alphaAttack2");
+        }
+        
         createdAttack = Instantiate(meleePrefab, _transform.position, _transform.rotation);
-        createdAttack.transform.position += createdAttack.transform.up;
+        createdAttack.transform.position += createdAttack.transform.up / 2;
         createdAttack.transform.localScale += new Vector3(0.5f, 0.5f, 0);
         Destroy(createdAttack, 0.2f);
     }
@@ -203,7 +215,15 @@ public class GreaterEnemyScript : MonoBehaviour
     {
 
         health -= _player.GetComponent<ShipControl1>().playerAttack;
-
+        int rand = Random.Range(0, 2);
+        if (rand == 1)
+        {
+            FindObjectOfType<AudioManager>().Play("alphadamage1");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("alphadamage2");
+        }
         if (health == 0)
         {
             onDeath();
@@ -217,6 +237,8 @@ public class GreaterEnemyScript : MonoBehaviour
         _gameController.totalSpawned -= 1;
         slainCount.GetComponent<KnightsSlain>().knightsSlain += 1;
         Debug.Log(_gameController.totalSpawned);
+        FindObjectOfType<AudioManager>().Play("alphadeath");
+        GameObject createdPotion = Instantiate(potionPrefab, _transform.position, potionPrefab.transform.rotation);
         Destroy(gameObject);
     }
 

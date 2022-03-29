@@ -13,7 +13,7 @@ public class LaserProjectile : MonoBehaviour
         _transform = GetComponent<Transform>();
         if (gameObject.CompareTag("Spear"))
         {
-            _transform.Translate(new Vector3(0.5f,0,0));
+            _transform.Translate(new Vector3(0.5f,0,-1));
             damage = 5;
         }
         

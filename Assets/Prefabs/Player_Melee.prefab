@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19debe43b2f593e4dbf03d8638f05d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   KSlashMoveSpeed: 4

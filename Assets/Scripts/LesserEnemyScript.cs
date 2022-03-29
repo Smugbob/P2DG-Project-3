@@ -50,7 +50,7 @@ public class LesserEnemyScript : MonoBehaviour
         _RB = GetComponent<Rigidbody2D>();
         direction = transform.TransformDirection(Vector2.up);
 
-        rand = Random.Range(0, 3);
+        rand = Random.Range(0, 4);
         if (rand == 1)
         {
             attack = attackType.Ranged;
@@ -230,10 +230,19 @@ public class LesserEnemyScript : MonoBehaviour
         //Quaternion rotation = Quaternion.Euler(0, 0, getDirection()[0]);
         //float startPosX = getDirection()[1];
         // float startPosY = getDirection()[2];
+        int rand = Random.Range(0, 2);
+        if (rand == 1)
+        {
+            FindObjectOfType<AudioManager>().Play("meleeattack1");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("meleeattack2");
+        }
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(true);
         createdAttack = Instantiate(meleePrefab, _transform.position, _transform.rotation);
-        createdAttack.transform.position += createdAttack.transform.up;
+        createdAttack.transform.position += createdAttack.transform.up / 2;
         Destroy(createdAttack, 0.2f);
     }
 
@@ -247,6 +256,15 @@ public class LesserEnemyScript : MonoBehaviour
         ydist = Mathf.Abs(ydist);
         GameObject createdAttack;
 
+        int rand = Random.Range(0, 2);
+        if (rand == 1)
+        {
+            FindObjectOfType<AudioManager>().Play("rangedattack1");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("rangedattack2");
+        }
         //Quaternion rotation = Quaternion.Euler(getDirection()[0] + 90, 90, 90);
         createdAttack = Instantiate(rangedPrefab, _transform.position, _transform.rotation);
         //Destroy(createdAttack, 5);
@@ -256,7 +274,30 @@ public class LesserEnemyScript : MonoBehaviour
     {
       
         health -= _player.GetComponent<ShipControl1>().playerAttack;
-        
+        if (attack == attackType.Melee) 
+        {
+            int rand = Random.Range(0, 2);
+            if (rand == 1)
+            {
+                FindObjectOfType<AudioManager>().Play("meleedamage1");
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().Play("meleedamage2");
+            }
+        }
+        else
+        {
+            int rand = Random.Range(0, 2);
+            if (rand == 1)
+            {
+                FindObjectOfType<AudioManager>().Play("rangeddamage1");
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().Play("rangeddamage2");
+            }
+        }
         if (health == 0)
         {
             onDeath();
@@ -266,6 +307,14 @@ public class LesserEnemyScript : MonoBehaviour
 
     void onDeath()
     {
+        if (attack == attackType.Melee)
+        {
+            FindObjectOfType<AudioManager>().Play("meleedeath");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("rangeddeath");
+        }
         _gameController.score += 10;
         _gameController.totalSpawned -= 1;
         slainCount.GetComponent<KnightsSlain>().knightsSlain += 1;

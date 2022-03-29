@@ -77,6 +77,7 @@ public class GameController : MonoBehaviour
 
             case EGameState.Win:
                 _Camera.transform.position = new Vector3(90, 0, -10);
+                FindObjectOfType<AudioManager>().Play("playerWin");
                 if (Input.GetKeyDown(KeyCode.P))
                 {
                     ChangeState(EGameState.MainMenu);
@@ -107,6 +108,7 @@ public class GameController : MonoBehaviour
                 break;
             ////////////////////////////////////////////////////////////////
             case EGameState.Playing:
+                FindObjectOfType<AudioManager>().Play("playerstart");
                 GameObject.Find("HUD").GetComponent<Canvas>().enabled = true;
                 Time.timeScale = 1.0f;
                 break;
@@ -146,9 +148,11 @@ public class GameController : MonoBehaviour
             Debug.Log("Unloading Game Scene");
             SceneManager.UnloadSceneAsync("Game");
         }
-
+        
         //Load a new game scene, resetting all assets within it
         SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+        
+        score = 0;
 
 
     }

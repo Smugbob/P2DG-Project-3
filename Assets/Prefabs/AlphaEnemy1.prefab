@@ -1161,6 +1161,8 @@ MonoBehaviour:
   attackRate: 1.5
   attackTime: 0.1
   damage: 2
+  potionPrefab: {fileID: 1470661410567028718, guid: 143dfa56a46a086409b45b0fe9c3041b,
+    type: 3}
 --- !u!61 &806897810787029182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2510,8 +2512,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898256445015987964}
   m_LocalRotation: {x: 0.8308524, y: -0.47920933, z: -0.1304845, w: -0.25103098}
-  m_LocalPosition: {x: 0.116, y: -0.706, z: 1.013}
-  m_LocalScale: {x: 0.20000003, y: 0.20000003, z: 0.20000002}
+  m_LocalPosition: {x: 0.114, y: -0.755, z: 1.089}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 5851346542750754355}
   - {fileID: 4709111278385860552}
