@@ -11,6 +11,11 @@ public class LaserProjectile : MonoBehaviour
     void Start()
     {
         _transform = GetComponent<Transform>();
+        if (gameObject.CompareTag("Spear"))
+        {
+            _transform.Translate(new Vector3(0.5f,0,0));
+        }
+        
         //_transform.Rotate(Vector3.right, 90.f, 1);
     }
 

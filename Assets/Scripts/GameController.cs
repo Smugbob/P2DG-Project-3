@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     private static GameController _gameController = null;
     public int score = 0;
     private Camera _Camera;
+    
 
     public enum EGameState
     {
@@ -26,6 +27,8 @@ public class GameController : MonoBehaviour
 
         //Assign our static reference to this one we just created
         _gameController = this;
+
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -85,6 +88,7 @@ public class GameController : MonoBehaviour
             ////////////////////////////////////////////////////////////////
             case EGameState.MainMenu:
                 GameObject.Find("HUD").GetComponent<Canvas>().enabled = false;
+                GameObject.Find("Buttons").GetComponent<Canvas>().enabled = true;
                 Time.timeScale = 0.0f;
                 break;
             ////////////////////////////////////////////////////////////////

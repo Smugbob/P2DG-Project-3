@@ -52,10 +52,15 @@ public class LesserEnemyScript : MonoBehaviour
         if (rand == 1)
         {
             attack = attackType.Ranged;
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
         }
         else
         {
             attack = attackType.Melee;
+            transform.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(2).gameObject.SetActive(false);
+            transform.GetChild(3).gameObject.SetActive(false);
         }
 
         if (attack == attackType.Melee)
@@ -131,18 +136,27 @@ public class LesserEnemyScript : MonoBehaviour
     void useAttack()
     {
         if ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist)) {
+            attacking = true; 
+
             if (attack == attackType.Melee)
             {
                 meleeAttack();
+                Invoke("changeBackModel", 1.0f);
             }
-        }
 
-        if ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist * 2)) {
             if (attack == attackType.Ranged)
             {
                 rangedAttack();
+                transform.GetChild(3).gameObject.SetActive(false);
+                Invoke("changeBackSpear", 1.0f);
             }
         }
+
+        else
+        {
+            attacking = false;
+        }
+
     }
 
     void move()
@@ -181,7 +195,13 @@ public class LesserEnemyScript : MonoBehaviour
         //_transform.LookAt(targetPosFlattened);
         _transform.up = _playerTransform.position - _transform.position;
         float step = yspeed * Time.deltaTime;
-        _transform.position = Vector2.MoveTowards(_transform.position, _playerTransform.position, step);
+
+        if (!((attack == attackType.Ranged) && ((Vector3.Distance(_playerTransform.position, _transform.position) < minDist))))
+        {
+            _transform.position = Vector2.MoveTowards(_transform.position, _playerTransform.position, step);
+        }
+        
+        
         //Vector3 translateAmount = Vector3.up * (Time.deltaTime * yspeed);
 
         //_transform.Translate(translateAmount);
@@ -208,6 +228,8 @@ public class LesserEnemyScript : MonoBehaviour
         //Quaternion rotation = Quaternion.Euler(0, 0, getDirection()[0]);
         //float startPosX = getDirection()[1];
         // float startPosY = getDirection()[2];
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
         createdAttack = Instantiate(meleePrefab, _transform.position, _transform.rotation);
         createdAttack.transform.position += createdAttack.transform.up;
         Destroy(createdAttack, 0.2f);
@@ -225,16 +247,19 @@ public class LesserEnemyScript : MonoBehaviour
 
         //Quaternion rotation = Quaternion.Euler(getDirection()[0] + 90, 90, 90);
         createdAttack = Instantiate(rangedPrefab, _transform.position, _transform.rotation);
-        Destroy(createdAttack, 5);
+        //Destroy(createdAttack, 5);
     }
 
     public void takeDamage()
     {
+      
         health -= _player.GetComponent<ShipControl1>().playerAttack;
+        
         if (health == 0)
         {
             onDeath();
         }
+
     }
 
     void onDeath()
@@ -304,4 +329,17 @@ public class LesserEnemyScript : MonoBehaviour
 
         return returns;
     }
+
+    void changeBackModel()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
+    }
+
+    void changeBackSpear()
+    {
+        transform.GetChild(3).gameObject.SetActive(true);
+    }
+
+    
 }

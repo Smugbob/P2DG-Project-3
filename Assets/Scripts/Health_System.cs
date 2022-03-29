@@ -30,7 +30,10 @@ public class Health_System : MonoBehaviour
             if (current_health == 0)
             {
                 Debug.Log("You have died");
+                healthBar.set_health(total_health);
+                current_health = total_health;
                 _gameController.ChangeState(GameController.EGameState.Gameover);
+                
             }
 
         }

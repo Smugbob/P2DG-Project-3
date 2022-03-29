@@ -9,7 +9,10 @@ public class ShipControl1 : MonoBehaviour
 	[SerializeField] private float rotationSpeed;
 	private Camera _Camera;
 	[SerializeField] private GameObject Laser;
+	[SerializeField] private GameObject meleePrefab;
 	public int playerAttack = 1;
+	bool intangible = false;
+	bool attacking = false;
 
 	private void Awake()
 	{
@@ -63,7 +66,25 @@ public class ShipControl1 : MonoBehaviour
 		//spawn laser
 		if (Input.GetKeyDown(KeyCode.Z))
 		{
-			GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
+			if (attacking == false)
+			{
+				GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
+				attacking = true;
+				Invoke("delayAttack", 0.5f);
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.X))
+		{
+			if (attacking == false)
+            {
+				GameObject CreatedMelee = Instantiate(meleePrefab, transform.position, transform.rotation);
+				CreatedMelee.transform.position += CreatedMelee.transform.up;
+				Destroy(CreatedMelee, 0.3f);
+				attacking = true;
+				Invoke("delayAttack", 0.3f);
+			}
+			
 		}
 
 		//player faces direction of movement
@@ -94,6 +115,10 @@ public class ShipControl1 : MonoBehaviour
 
 	}
 
+	void delayAttack()
+    {
+		attacking = false;
+    }
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{

@@ -36,7 +36,7 @@ public class SpawnEnemyTile : MonoBehaviour
         Vector3 randomWorldPos = _camera.ScreenToWorldPoint(randomCamPoint);
         */
 
-        rand = Random.Range(0, 100);
+        rand = Random.Range(0, 1000);
         if (rand == 1)
         {
             //instantiate object prefab with created coordinates and rotation
