@@ -79,7 +79,7 @@ public class ShipControl1 : MonoBehaviour
 			if (attacking == false)
             {
 				GameObject CreatedMelee = Instantiate(meleePrefab, transform.position, transform.rotation);
-				CreatedMelee.transform.position += CreatedMelee.transform.up;
+				//CreatedMelee.transform.position += CreatedMelee.transform.up;
 				Destroy(CreatedMelee, 0.3f);
 				attacking = true;
 				Invoke("delayAttack", 0.3f);

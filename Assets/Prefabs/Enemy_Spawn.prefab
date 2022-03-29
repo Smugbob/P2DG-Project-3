@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4709205677488674700, guid: fe50032cd475d8642bc99a81ce690c53,
     type: 3}
-  enemyAlphaPrefab: {fileID: 1826640798199581852, guid: 77c0155f03665934ba94dada701fe9fd,
+  enemyAlphaPrefab: {fileID: 1003994537820785954, guid: c4dbfc22537fbf04890b140b394b7acb,
     type: 3}
   spawnTime: 1
   spawnDelay: 10

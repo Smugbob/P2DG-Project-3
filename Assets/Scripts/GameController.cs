@@ -118,7 +118,7 @@ public class GameController : MonoBehaviour
         _eGameState = eGameState;
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
 
         //Check whether there is already an active Game scene. If so, unload it.

@@ -12,6 +12,7 @@ TagManager:
   - Alpha
   - Barrel
   - Crate
+  - EMelee
   layers:
   - Default
   - TransparentFX
