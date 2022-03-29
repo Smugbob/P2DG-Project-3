@@ -60,7 +60,7 @@ public class Health_System : MonoBehaviour
         }
         if (other.gameObject.tag == "Potion")
         {
-            take_damage(-10);
+            take_damage(-30);
             Destroy(other.gameObject);
         }
     }

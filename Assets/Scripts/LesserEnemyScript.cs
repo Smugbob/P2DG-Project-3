@@ -29,6 +29,7 @@ public class LesserEnemyScript : MonoBehaviour
     [SerializeField]
     private int damage = 1;
     private bool attacking = false;
+    public GameObject Potion;
 
     private enum attackType
     {
@@ -266,6 +267,7 @@ public class LesserEnemyScript : MonoBehaviour
     {
         _gameController.score += 10;
         Destroy(gameObject);
+        Instantiate(Potion, transform.position, Potion.transform.rotation);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

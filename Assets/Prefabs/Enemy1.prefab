@@ -9055,6 +9055,7 @@ MonoBehaviour:
   attackRate: 1.5
   attackTime: 0.1
   damage: 1
+  Potion: {fileID: 1470661410567028718, guid: e0ed4b3171eaf724a8adca3579afa0da, type: 3}
 --- !u!61 &2810170839137547043
 BoxCollider2D:
   m_ObjectHideFlags: 0

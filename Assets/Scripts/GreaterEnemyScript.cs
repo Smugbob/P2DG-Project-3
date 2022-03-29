@@ -24,6 +24,7 @@ public class GreaterEnemyScript : MonoBehaviour
     private float attackRate;
     [SerializeField]
     private float attackTime;
+    public GameObject Potion;
 
     private enum attackType
     {
@@ -120,6 +121,7 @@ public class GreaterEnemyScript : MonoBehaviour
     {
         _gameController.score += 50;
         Destroy(gameObject);
+        Instantiate(Potion, transform.position, Potion.transform.rotation);
     }
 
     private int[] getDirection()
