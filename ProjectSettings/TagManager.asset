@@ -7,7 +7,12 @@ TagManager:
   - Asteroid
   - Laser
   - Wall
+  - Spear
   - Enemy
+  - Alpha
+  - Barrel
+  - Crate
+  - Melee
   layers:
   - Default
   - TransparentFX

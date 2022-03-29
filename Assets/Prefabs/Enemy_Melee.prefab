@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3254162834704123432}
   - component: {fileID: 6761962991133466053}
-  - component: {fileID: 8829597049184933237}
-  - component: {fileID: -1542996926467076278}
   m_Layer: 0
   m_Name: Enemy_Melee
   m_TagString: Untagged
@@ -72,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 3984d3ea56dfab74cbd4531b61b6447d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e8fad8a24774954090d5943b44f728e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,84 +81,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8829597049184933237
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865905755980198526}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 1}
-    newSize: {x: 2, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5546875, y: 0.0703125}
-      - {x: -0.390625, y: 0.1484375}
-      - {x: -0.1953125, y: 0.21875}
-      - {x: -0.078125, y: 0.21875}
-      - {x: 0.0546875, y: 0.1953125}
-      - {x: 0.15625, y: 0.1796875}
-      - {x: 0.265625, y: 0.15625}
-      - {x: 0.4453125, y: 0.1015625}
-      - {x: 0.65625, y: 0.0078125}
-      - {x: 0.7421875, y: -0.0703125}
-      - {x: 0.84375, y: -0.140625}
-      - {x: 0.9765625, y: -0.25}
-      - {x: 0.9921875, y: -0.2265625}
-      - {x: 0.9921875, y: -0.15625}
-      - {x: 0.9453125, y: -0.0546875}
-      - {x: 0.8984375, y: 0.0078125}
-      - {x: 0.8125, y: 0.1015625}
-      - {x: 0.734375, y: 0.1640625}
-      - {x: 0.5390625, y: 0.28125}
-      - {x: 0.3515625, y: 0.34375}
-      - {x: 0.1171875, y: 0.3828125}
-      - {x: -0.0390625, y: 0.390625}
-      - {x: -0.3515625, y: 0.390625}
-      - {x: -0.4296875, y: 0.3671875}
-      - {x: -0.5390625, y: 0.328125}
-      - {x: -0.6796875, y: 0.2578125}
-      - {x: -0.734375, y: 0.203125}
-      - {x: -0.8359375, y: 0.0859375}
-      - {x: -1, y: -0.140625}
-      - {x: -1, y: -0.2734375}
-      - {x: -0.984375, y: -0.3125}
-      - {x: -0.9453125, y: -0.3125}
-      - {x: -0.875, y: -0.203125}
-      - {x: -0.7109375, y: -0.046875}
-      - {x: -0.671875, y: -0.0234375}
---- !u!50 &-1542996926467076278
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865905755980198526}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0

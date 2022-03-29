@@ -9,7 +9,10 @@ public class ShipControl1 : MonoBehaviour
 	[SerializeField] private float rotationSpeed;
 	private Camera _Camera;
 	[SerializeField] private GameObject Laser;
-	[SerializeField] private GameObject Slash;
+	[SerializeField] private GameObject meleePrefab;
+	public int playerAttack = 1;
+	bool intangible = false;
+	bool attacking = false;
 
 	private void Awake()
 	{
@@ -20,6 +23,7 @@ public class ShipControl1 : MonoBehaviour
 	private Transform _shipTransform;
 	private Rigidbody2D _shipRB;
 	private GameController _gameController;
+	
 
 	void Start()
 	{
@@ -28,6 +32,8 @@ public class ShipControl1 : MonoBehaviour
 		_shipTransform = transform;
 		_shipRB = GetComponent<Rigidbody2D>();
 		_Camera = Camera.main;
+		
+		
 	}
 
 	void Update()
@@ -50,56 +56,69 @@ public class ShipControl1 : MonoBehaviour
 		Vector2 moveposition = _shipTransform.position + new Vector3(translationx, translationy);
 		_shipRB.MovePosition(moveposition);
 
+		// Rotate around our z-axis
+		_shipTransform.Rotate(0, 0, -rotation);
+
 		//camera follows player
 		Vector3 camera_pos = new Vector3(transform.position.x, transform.position.y, _Camera.transform.position.z);
 		_Camera.transform.position = camera_pos;
 
 		//spawn laser
-		if (Input.GetKeyDown(KeyCode.X))
+		if (Input.GetKeyDown(KeyCode.Z))
 		{
-			GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
+			if (attacking == false)
+			{
+				GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
+				attacking = true;
+				Invoke("delayAttack", 0.5f);
+			}
 		}
 
-		melee_attack();
+		if (Input.GetKeyDown(KeyCode.X))
+		{
+			if (attacking == false)
+            {
+				GameObject CreatedMelee = Instantiate(meleePrefab, transform.position, transform.rotation);
+				CreatedMelee.transform.position += CreatedMelee.transform.up;
+				Destroy(CreatedMelee, 0.3f);
+				attacking = true;
+				Invoke("delayAttack", 0.3f);
+			}
+			
+		}
 
-		//player faces direction of movement
-		player_direction();
-
-	}
-
-	private void player_direction()
-    {
 		//player faces direction of movement
 		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 		{
-			Vector3 up_pos = new Vector3(180, 0, 0);
+			Vector3 up_pos = new Vector3(0, 0, 0);
 			transform.eulerAngles = up_pos;
 		}
 		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
-			Vector3 left_pos = new Vector3(180, 0, -90);
+			Vector3 left_pos = new Vector3(0, 0, 90);
 			transform.eulerAngles = left_pos;
 		}
 		if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
 		{
-			Vector3 down_pos = new Vector3(180, 0, 180);
+			Vector3 down_pos = new Vector3(0, 0, 180);
 			transform.eulerAngles = down_pos;
 		}
 		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
-			Vector3 right_pos = new Vector3(180, 0, 90);
+			Vector3 right_pos = new Vector3(0, 0, -90);
 			transform.eulerAngles = right_pos;
 		}
+
+
+
+
+
 	}
 
-	private void melee_attack()
+	void delayAttack()
     {
-		if (Input.GetKeyDown(KeyCode.Z))
-		{
-			GameObject CreatedSlash = Instantiate(Slash, transform.position, transform.rotation);
-			Destroy(CreatedSlash, 0.2f);
-		}
-	}
+		attacking = false;
+    }
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{

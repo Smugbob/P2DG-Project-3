@@ -1,11 +1,8 @@
-﻿////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////// This code was implemented following a tutorial from Bernard Polidario - 28th May 2021, on weeklyhow.com //////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Healthbar : MonoBehaviour
@@ -20,6 +17,8 @@ public class Healthbar : MonoBehaviour
         healthBar = GetComponent<Slider>();
         healthBar.maxValue = player_health.total_health;
         healthBar.value = player_health.total_health;
+
+        SceneManager.SetActiveScene(gameObject.scene);
     }
 
     public void set_health(int hp)

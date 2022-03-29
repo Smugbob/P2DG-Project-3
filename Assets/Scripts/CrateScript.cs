@@ -23,4 +23,18 @@ public class CrateScript : MonoBehaviour
     {
         
     }
+
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+        if (health == 0)
+        {
+            onDeath();
+        }
+    }
+
+    void onDeath()
+    {
+        Destroy(gameObject);
+    }
 }

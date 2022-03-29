@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
 
     private static GameController _gameController = null;
     public int score = 0;
+    private Camera _Camera;
+    
 
     public enum EGameState
     {
@@ -25,10 +27,13 @@ public class GameController : MonoBehaviour
 
         //Assign our static reference to this one we just created
         _gameController = this;
+
+        
     }
     // Start is called before the first frame update
     void Start()
     {
+        _Camera = Camera.main;
         ChangeState(EGameState.MainMenu);
     }
 
@@ -38,6 +43,7 @@ public class GameController : MonoBehaviour
         switch (_eGameState)
         {
             case EGameState.MainMenu:
+                _Camera.transform.position = new Vector3(50, 0, -10);
                 if (Input.GetKeyDown(KeyCode.P))
                 {
                     RestartGame();
@@ -56,6 +62,11 @@ public class GameController : MonoBehaviour
                 break;
 
             case EGameState.Gameover:
+                _Camera.transform.position = new Vector3(70, 0, -10);
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    ChangeState(EGameState.MainMenu);
+                }
                 break;
 
 
@@ -76,13 +87,19 @@ public class GameController : MonoBehaviour
         {
             ////////////////////////////////////////////////////////////////
             case EGameState.MainMenu:
+                GameObject.Find("HUD").GetComponent<Canvas>().enabled = false;
+                GameObject.Find("Buttons").GetComponent<Canvas>().enabled = true;
+                Time.timeScale = 0.0f;
                 break;
             ////////////////////////////////////////////////////////////////
             case EGameState.Playing:
+                GameObject.Find("HUD").GetComponent<Canvas>().enabled = true;
                 Time.timeScale = 1.0f;
                 break;
             ////////////////////////////////////////////////////////////////
             case EGameState.Gameover:
+                GameObject.Find("HUD").GetComponent<Canvas>().enabled = false;
+                Time.timeScale = 0.0f;
                 break;
             ////////////////////////////////////////////////////////////////
             case EGameState.Paused:

@@ -6,10 +6,17 @@ public class LaserProjectile : MonoBehaviour
 {
     private Transform _transform;
     [SerializeField] private float KProjectileMoveSpeed = 10.0f;
+    int damage = 1;
     // Start is called before the first frame update
     void Start()
     {
         _transform = GetComponent<Transform>();
+        if (gameObject.CompareTag("Spear"))
+        {
+            _transform.Translate(new Vector3(0.5f,0,0));
+        }
+        
+        //_transform.Rotate(Vector3.right, 90.f, 1);
     }
 
     // Update is called once per frame
@@ -17,22 +24,47 @@ public class LaserProjectile : MonoBehaviour
     {
         Vector3 translateAmount = Vector3.up * (Time.deltaTime * KProjectileMoveSpeed);
 
-        _transform.Translate(-translateAmount);
+        _transform.Translate(translateAmount);
     }
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.CompareTag("Wall"))
         {
-            Debug.Log("Enemy hit");
-            Destroy(GameObject.Find("Enemy"));
-            Destroy(GameObject.Find("Alpha Enemy"));
             Destroy(gameObject);
         }
+
+        if ((other.CompareTag("Enemy") || other.CompareTag("Alpha")) && gameObject.CompareTag("Laser"))
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                other.GetComponent<LesserEnemyScript>().takeDamage();
+            }
+            else
+            {
+                other.GetComponent<GreaterEnemyScript>().takeDamage();
+            }
+            Destroy(gameObject);
+        }
+
+        if ((other.CompareTag("Crate") || other.CompareTag("Barrel")))
+        {
+            if (other.CompareTag("Crate"))
+            {
+                other.GetComponent<CrateScript>().takeDamage(damage);
+            }
+            else
+            {
+                other.GetComponent<BarrelScript>().takeDamage(damage);
+            }
+            Destroy(gameObject);
+        }
+
     }
+
 }

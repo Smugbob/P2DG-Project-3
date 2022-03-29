@@ -11,27 +11,27 @@ public class Health_System : MonoBehaviour
     public int current_health = 0;
 
     public Healthbar healthBar;
+    private GameController _gameController;
+    private GameObject _mainMenu;
 
     // Start is called before the first frame update
     void Start()
     {
         current_health = total_health;
+        _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
+        _mainMenu = GameObject.Find("MainMenu");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (current_health == 0)
         {
-            Debug.Log("damage taken");
-            take_damage(10);
-            if (current_health == 0)
-            {
-                Debug.Log("You have died");
-            }
-
+            Debug.Log("You have died");
+            healthBar.set_health(total_health);
+            current_health = total_health;
+            _gameController.ChangeState(GameController.EGameState.Gameover);
         }
-        
     }
 
     public void take_damage(int damage)
@@ -46,11 +46,11 @@ public class Health_System : MonoBehaviour
         {
             Debug.Log("damage taken");
             take_damage(10);
-            if (current_health == 0)
-            {
-                Debug.Log("You have died");
-            }
+        }
+        if (other.gameObject.tag == "Spear")
+        {
+            Debug.Log("damage taken");
+            take_damage(10);
         }
     }
 }
-///test comment ignore
