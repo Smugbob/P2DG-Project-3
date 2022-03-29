@@ -246,9 +246,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6972315910847018406}
-  - component: {fileID: 813233825259174734}
   - component: {fileID: 29416742292117858}
   - component: {fileID: -3734944759005283240}
+  - component: {fileID: 223368045003832683}
   m_Layer: 0
   m_Name: spear
   m_TagString: Spear
@@ -271,32 +271,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &813233825259174734
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7748853061399310108}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
-  m_EdgeRadius: 0
 --- !u!50 &29416742292117858
 Rigidbody2D:
   serializedVersion: 4
@@ -331,6 +305,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KProjectileMoveSpeed: 3
+--- !u!60 &223368045003832683
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748853061399310108}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.30992085, y: 0.16099541}
+      - {x: -0.27942857, y: 0.20837912}
+      - {x: -0.28927884, y: 0.23957625}
+      - {x: -0.3025204, y: 0.30535173}
+      - {x: -0.33456078, y: 0.38124245}
+      - {x: -0.36827326, y: 0.26584777}
+      - {x: -0.37963483, y: 0.20339134}
+      - {x: -0.36443847, y: 0.1615276}
+      - {x: -0.34521, y: 0.109760985}
+      - {x: -0.3547079, y: -0.83533216}
+      - {x: -0.34982, y: -0.9520782}
+      - {x: -0.3182088, y: -0.9631487}
+      - {x: -0.30455363, y: -0.5293095}
 --- !u!1 &9098454607347154038
 GameObject:
   m_ObjectHideFlags: 0

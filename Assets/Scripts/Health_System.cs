@@ -39,6 +39,12 @@ public class Health_System : MonoBehaviour
         current_health -= damage;
         healthBar.set_health(current_health);
     }
+    
+    public void heal_damge(int heal_amount)
+    {
+        current_health += heal_amount;
+        healthBar.set_health(current_health);
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -51,6 +57,11 @@ public class Health_System : MonoBehaviour
         {
             Debug.Log("damage taken");
             take_damage(10);
+        }
+        if (other.gameObject.tag == "Potion")
+        {
+            take_damage(-10);
+            Destroy(other.gameObject);
         }
     }
 }
