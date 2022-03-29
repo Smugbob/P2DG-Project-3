@@ -29,6 +29,7 @@ public class LesserEnemyScript : MonoBehaviour
     [SerializeField]
     private int damage = 1;
     private bool attacking = false;
+    private GameObject slainCount;
 
     private enum attackType
     {
@@ -42,6 +43,7 @@ public class LesserEnemyScript : MonoBehaviour
     {
         //cache components
         _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
+        slainCount = GameObject.Find("KnightsSlain");
         _player = GameObject.Find("Player");
         _transform = GetComponent<Transform>();
         _playerTransform = _player.GetComponent<Transform>();
@@ -65,7 +67,7 @@ public class LesserEnemyScript : MonoBehaviour
 
         if (attack == attackType.Melee)
         {
-            minDist = 2.0f;
+            minDist = 3.0f;
             //InvokeRepeating("meleeAttack", attackTime, attackRate);
         }
         else
@@ -265,6 +267,9 @@ public class LesserEnemyScript : MonoBehaviour
     void onDeath()
     {
         _gameController.score += 10;
+        _gameController.totalSpawned -= 1;
+        slainCount.GetComponent<KnightsSlain>().knightsSlain += 1;
+        Debug.Log(_gameController.totalSpawned);
         Destroy(gameObject);
     }
 

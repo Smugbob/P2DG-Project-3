@@ -32,8 +32,10 @@ public class ShipControl1 : MonoBehaviour
 		_shipTransform = transform;
 		_shipRB = GetComponent<Rigidbody2D>();
 		_Camera = Camera.main;
-		
-		
+
+		transform.GetChild(1).gameObject.SetActive(false);
+
+
 	}
 
 	void Update()
@@ -68,6 +70,9 @@ public class ShipControl1 : MonoBehaviour
 		{
 			if (attacking == false)
 			{
+				transform.GetChild(0).gameObject.SetActive(false);
+				transform.GetChild(1).gameObject.SetActive(true);
+				Invoke("changeBackModel", 0.5f);
 				GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
 				attacking = true;
 				Invoke("delayAttack", 0.5f);
@@ -119,6 +124,12 @@ public class ShipControl1 : MonoBehaviour
     {
 		attacking = false;
     }
+
+	void changeBackModel()
+	{
+		transform.GetChild(0).gameObject.SetActive(true);
+		transform.GetChild(1).gameObject.SetActive(false);
+	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{

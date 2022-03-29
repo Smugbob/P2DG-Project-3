@@ -65,6 +65,7 @@ public class SpawnEnemyTile : MonoBehaviour
         _camera = Camera.main;
         _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
         Debug.Assert(_camera, this.gameObject);
+        _gameController.totalSpawned += (spawnCount / 2);
 
 
 

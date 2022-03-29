@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeScript : MonoBehaviour
 {
-    int damage = 1;
+    int damage = 10;
     private Transform _transform;
     [SerializeField] private float KSlashMoveSpeed = 1f;
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class MeleeScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if ((other.CompareTag("Enemy") || other.CompareTag("Alpha")))
+        if (((other.CompareTag("Enemy") || other.CompareTag("Alpha")) && gameObject.CompareTag("Melee")))
         {
             if (other.CompareTag("Enemy"))
             {
@@ -34,6 +34,13 @@ public class MeleeScript : MonoBehaviour
             {
                 other.GetComponent<GreaterEnemyScript>().takeDamage();
             }
+            Destroy(gameObject);
+        }
+
+        if ((other.CompareTag("Player") && gameObject.CompareTag("EMelee")))
+        {
+            
+            other.GetComponent<Health_System>().take_damage(damage);
             Destroy(gameObject);
         }
 

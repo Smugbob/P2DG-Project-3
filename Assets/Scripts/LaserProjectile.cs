@@ -14,6 +14,7 @@ public class LaserProjectile : MonoBehaviour
         if (gameObject.CompareTag("Spear"))
         {
             _transform.Translate(new Vector3(0.5f,0,0));
+            damage = 5;
         }
         
         //_transform.Rotate(Vector3.right, 90.f, 1);
@@ -49,6 +50,13 @@ public class LaserProjectile : MonoBehaviour
             {
                 other.GetComponent<GreaterEnemyScript>().takeDamage();
             }
+            Destroy(gameObject);
+        }
+
+        if ((other.CompareTag("Player") && gameObject.CompareTag("Spear")))
+        {
+
+            other.GetComponent<Health_System>().take_damage(damage);
             Destroy(gameObject);
         }
 

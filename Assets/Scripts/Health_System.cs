@@ -44,8 +44,6 @@ public class Health_System : MonoBehaviour
         if (current_health == 0)
         {
             Debug.Log("You have died");
-            healthBar.set_health(total_health);
-            current_health = total_health;
             _gameController.ChangeState(GameController.EGameState.Gameover);
 
         }
@@ -53,11 +51,13 @@ public class Health_System : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        /*
         if ((other.gameObject.tag == "Spear") || (other.gameObject.tag == "EMelee"))
         {
             Debug.Log("damage taken");
             take_damage(10);
         }
+        */
     }
 }
 

@@ -1120,7 +1120,7 @@ GameObject:
   - component: {fileID: -4177381887392297449}
   m_Layer: 0
   m_Name: AlphaEnemy1
-  m_TagString: Untagged
+  m_TagString: Alpha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

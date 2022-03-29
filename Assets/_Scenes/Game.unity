@@ -367,7 +367,7 @@ PrefabInstance:
     - target: {fileID: 878098862482613187, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
       propertyPath: spawnCount
-      value: 90
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1134458719198769041, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
@@ -457,7 +457,7 @@ PrefabInstance:
     - target: {fileID: 2686587089389169335, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
       propertyPath: spawnCount
-      value: 64
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2755324424326620352, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
@@ -8273,7 +8273,7 @@ PrefabInstance:
     - target: {fileID: 3108744584686833580, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
       propertyPath: spawnCount
-      value: 81
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3307974444436861115, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
@@ -8383,7 +8383,7 @@ PrefabInstance:
     - target: {fileID: 4234824187598022696, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
       propertyPath: spawnCount
-      value: 47
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4258102532478933039, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
@@ -8648,7 +8648,7 @@ PrefabInstance:
     - target: {fileID: 6355219069040063258, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
       propertyPath: spawnCount
-      value: 55
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6525908760185690517, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
@@ -8788,17 +8788,17 @@ PrefabInstance:
     - target: {fileID: 8045046647157423013, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
       propertyPath: spawnCount
-      value: 77
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8484211761124214556, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
       propertyPath: spawnCount
-      value: 55
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9091633532011551950, guid: 5e5c288ea11b6db4db11b5438ad85365,
         type: 3}
       propertyPath: spawnCount
-      value: 81
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e5c288ea11b6db4db11b5438ad85365, type: 3}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3254162834704123432}
   - component: {fileID: 6761962991133466053}
   - component: {fileID: 2789853292069202742}
+  - component: {fileID: -2146308407328942924}
   m_Layer: 0
   m_Name: Enemy_Melee
   m_TagString: EMelee
@@ -107,8 +108,25 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.044999998, y: 0.26999998}
-      - {x: -0.044999998, y: -0.26999998}
-      - {x: 0.035, y: -0.26999998}
-      - {x: 0.044999998, y: -0.19}
-      - {x: 0.044999998, y: 0.26999998}
+    - - {x: -0.20837967, y: 0.7216978}
+      - {x: -0.8317003, y: 0.48764753}
+      - {x: -1.2411432, y: 0.042187214}
+      - {x: -0.08344165, y: 0.4892373}
+      - {x: -0.013053738, y: 0.470016}
+      - {x: 0.07383244, y: 0.4827419}
+      - {x: 1.2440901, y: -0.010166645}
+      - {x: 0.8595362, y: 0.46668863}
+      - {x: 0.15071575, y: 0.8081932}
+--- !u!114 &-2146308407328942924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3865905755980198526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19debe43b2f593e4dbf03d8638f05d1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KSlashMoveSpeed: 1

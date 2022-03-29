@@ -27,6 +27,7 @@ public class GreaterEnemyScript : MonoBehaviour
     [SerializeField]
     private int damage = 2;
     private bool attacking = false;
+    private GameObject slainCount;
 
 
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class GreaterEnemyScript : MonoBehaviour
     {
         //cache components
         _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
+        slainCount = GameObject.Find("KnightsSlain");
         _player = GameObject.Find("Player");
         _transform = GetComponent<Transform>();
         _playerTransform = _player.GetComponent<Transform>();
@@ -212,6 +214,9 @@ public class GreaterEnemyScript : MonoBehaviour
     void onDeath()
     {
         _gameController.score += 50;
+        _gameController.totalSpawned -= 1;
+        slainCount.GetComponent<KnightsSlain>().knightsSlain += 1;
+        Debug.Log(_gameController.totalSpawned);
         Destroy(gameObject);
     }
 
