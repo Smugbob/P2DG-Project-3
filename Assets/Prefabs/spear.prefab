@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7032bdbb6f19edb4680db150994c1416, type: 2}
+  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0d81d7c0187be949a7be9326b81ee30, type: 2}
+  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0d81d7c0187be949a7be9326b81ee30, type: 2}
+  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 6972315910847018406}
   - component: {fileID: 29416742292117858}
   - component: {fileID: -3734944759005283240}
-  - component: {fileID: 223368045003832683}
+  - component: {fileID: 1853191646537114942}
   m_Layer: 0
   m_Name: spear
   m_TagString: Spear
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KProjectileMoveSpeed: 3
---- !u!60 &223368045003832683
+--- !u!60 &1853191646537114942
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,7 +315,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -330,19 +330,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.30992085, y: 0.16099541}
-      - {x: -0.27942857, y: 0.20837912}
-      - {x: -0.28927884, y: 0.23957625}
-      - {x: -0.3025204, y: 0.30535173}
-      - {x: -0.33456078, y: 0.38124245}
-      - {x: -0.36827326, y: 0.26584777}
-      - {x: -0.37963483, y: 0.20339134}
-      - {x: -0.36443847, y: 0.1615276}
-      - {x: -0.34521, y: 0.109760985}
-      - {x: -0.3547079, y: -0.83533216}
-      - {x: -0.34982, y: -0.9520782}
-      - {x: -0.3182088, y: -0.9631487}
-      - {x: -0.30455363, y: -0.5293095}
+    - - {x: -0.3408647, y: 0.40916812}
+      - {x: -0.3753742, y: 0.33174124}
+      - {x: -0.3908412, y: 0.07723081}
+      - {x: -0.32118684, y: 0.03178233}
+      - {x: -0.26090658, y: 0.18782079}
 --- !u!1 &9098454607347154038
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9098454607347154038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: -2.5}
+  m_LocalPosition: {x: 0.5, y: 0, z: -2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2312685116231182409}

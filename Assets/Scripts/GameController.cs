@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     private static GameController _gameController = null;
     public int score = 0;
     private Camera _Camera;
+    public int totalSpawned = 0;
     
 
     public enum EGameState
@@ -16,7 +17,8 @@ public class GameController : MonoBehaviour
         MainMenu ,
         Playing ,
         Paused ,
-        Gameover
+        Gameover,
+        Win
     }
     private EGameState _eGameState = EGameState.Playing;
 
@@ -54,6 +56,10 @@ public class GameController : MonoBehaviour
             case EGameState.Playing:
                 if (Input.GetKeyDown(KeyCode.Escape))
                     ChangeState(EGameState.Paused);
+                if (totalSpawned == 0)
+                {
+                    ChangeState(EGameState.Win);
+                }
                 break;
 
             case EGameState.Paused:
@@ -63,6 +69,15 @@ public class GameController : MonoBehaviour
 
             case EGameState.Gameover:
                 _Camera.transform.position = new Vector3(70, 0, -10);
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    ChangeState(EGameState.MainMenu);
+                }
+                break;
+
+            case EGameState.Win:
+                _Camera.transform.position = new Vector3(90, 0, -10);
+                FindObjectOfType<AudioManager>().Play("playerWin");
                 if (Input.GetKeyDown(KeyCode.P))
                 {
                     ChangeState(EGameState.MainMenu);
@@ -93,11 +108,17 @@ public class GameController : MonoBehaviour
                 break;
             ////////////////////////////////////////////////////////////////
             case EGameState.Playing:
+                FindObjectOfType<AudioManager>().Play("playerstart");
                 GameObject.Find("HUD").GetComponent<Canvas>().enabled = true;
                 Time.timeScale = 1.0f;
                 break;
             ////////////////////////////////////////////////////////////////
             case EGameState.Gameover:
+                GameObject.Find("HUD").GetComponent<Canvas>().enabled = false;
+                Time.timeScale = 0.0f;
+                break;
+            ////////////////////////////////////////////////////////////////
+            case EGameState.Win:
                 GameObject.Find("HUD").GetComponent<Canvas>().enabled = false;
                 Time.timeScale = 0.0f;
                 break;
@@ -118,7 +139,7 @@ public class GameController : MonoBehaviour
         _eGameState = eGameState;
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
 
         //Check whether there is already an active Game scene. If so, unload it.
@@ -127,9 +148,11 @@ public class GameController : MonoBehaviour
             Debug.Log("Unloading Game Scene");
             SceneManager.UnloadSceneAsync("Game");
         }
-
+        
         //Load a new game scene, resetting all assets within it
         SceneManager.LoadScene("Game", LoadSceneMode.Additive);
+        
+        score = 0;
 
 
     }

@@ -36,7 +36,7 @@ public class SpawnEnemyTile : MonoBehaviour
         Vector3 randomWorldPos = _camera.ScreenToWorldPoint(randomCamPoint);
         */
 
-        rand = Random.Range(0, 1000);
+        rand = Random.Range(0, 10);
         if (rand == 1)
         {
             //instantiate object prefab with created coordinates and rotation
@@ -65,6 +65,7 @@ public class SpawnEnemyTile : MonoBehaviour
         _camera = Camera.main;
         _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
         Debug.Assert(_camera, this.gameObject);
+        _gameController.totalSpawned += (spawnCount / 2);
 
 
 

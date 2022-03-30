@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6344035051850102069}
   - component: {fileID: -2508821240892555586}
   - component: {fileID: 6680778705143874373}
-  - component: {fileID: 830233170222893695}
   m_Layer: 0
   m_Name: Alpha Enemy
   m_TagString: Alpha
@@ -134,24 +133,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &830233170222893695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826640798199581852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6b985396665a646a1190f6b6e5058a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xspeed: 7
-  yspeed: 7
-  health: 10
-  meleePrefab: {fileID: 3865905755980198526, guid: 05033820f75219f438f3a24d8d4c31d9,
-    type: 3}
-  rangedPrefab: {fileID: 4792491618433641989, guid: 970ce56ad6f215845aac30ee14723bcc,
-    type: 3}
-  attackRate: 1
-  attackTime: 1

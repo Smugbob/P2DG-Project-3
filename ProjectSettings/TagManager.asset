@@ -12,8 +12,8 @@ TagManager:
   - Alpha
   - Barrel
   - Crate
+  - EMelee
   - Melee
-  - Potion
   layers:
   - Default
   - TransparentFX

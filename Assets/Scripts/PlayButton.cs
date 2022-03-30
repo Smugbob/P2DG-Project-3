@@ -22,6 +22,7 @@ public class PlayButton : MonoBehaviour
     public void changeState()
     {
         _gameController.ChangeState(GameController.EGameState.Playing);
+        _gameController.RestartGame();
         EventSystem.current.SetSelectedGameObject(null);
     }
 }

@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class MeleeScript : MonoBehaviour
 {
-    int damage = 1;
+    public int damage = 10;
+    private Transform _transform;
+    [SerializeField] private float KSlashMoveSpeed = 1f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _transform = GetComponent<Transform>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 translateAmount = Vector3.up * (Time.deltaTime * KSlashMoveSpeed);
+
+        _transform.Translate(translateAmount);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if ((other.CompareTag("Enemy") || other.CompareTag("Alpha")))
+        if (((other.CompareTag("Enemy") || other.CompareTag("Alpha")) && gameObject.CompareTag("Melee")))
         {
             if (other.CompareTag("Enemy"))
             {
@@ -30,7 +35,14 @@ public class MeleeScript : MonoBehaviour
             {
                 other.GetComponent<GreaterEnemyScript>().takeDamage();
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
+        }
+
+        if ((other.CompareTag("Player") && gameObject.CompareTag("EMelee")))
+        {
+            
+            other.GetComponent<Health_System>().take_damage(damage);
+            //Destroy(gameObject);
         }
 
         if ((other.CompareTag("Crate") || other.CompareTag("Barrel")))
@@ -43,7 +55,7 @@ public class MeleeScript : MonoBehaviour
             {
                 other.GetComponent<BarrelScript>().takeDamage(damage);
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
     }

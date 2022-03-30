@@ -27,7 +27,7 @@ public class CrateScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         health -= damage;
-        if (health == 0)
+        if (health <= 0)
         {
             onDeath();
         }
@@ -35,6 +35,7 @@ public class CrateScript : MonoBehaviour
 
     void onDeath()
     {
+        FindObjectOfType<AudioManager>().Play("explode");
         Destroy(gameObject);
     }
 }

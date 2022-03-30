@@ -27,7 +27,7 @@ public class BarrelScript : MonoBehaviour
     public void takeDamage(int damage)
     {
         health -= damage;
-        if (health == 0)
+        if (health <= 0)
         {
             GameObject createdAcid = Instantiate(acidPrefab, transform.position, transform.rotation);
             onDeath();
@@ -36,6 +36,7 @@ public class BarrelScript : MonoBehaviour
 
     void onDeath()
     {
+        FindObjectOfType<AudioManager>().Play("explode");
         Destroy(gameObject);
     }
 }
