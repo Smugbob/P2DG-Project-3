@@ -7,10 +7,12 @@ public class Health_System : MonoBehaviour
 {
     public int total_health = 100;
     public int current_health = 0;
+    public int healthOpposite = 0;
 
     public Healthbar healthBar;
     private GameController _gameController;
     private GameObject _mainMenu;
+    public GameObject effect_small;
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +44,19 @@ public class Health_System : MonoBehaviour
 
     public void take_damage(int damage)
     {
+        Instantiate(effect_small, transform.position, Quaternion.identity);
         current_health -= damage;
+        healthOpposite += damage;
         healthBar.set_health(current_health);
+        foreach (var rend in GetComponentsInChildren<Renderer>(true))
+        {
+            rend.material.EnableKeyword("_EMISSION");
+        }
+        Invoke("resetFlash", 0.25f);
+        if ((current_health <= 10) && (current_health > 0))
+        { 
+            FindObjectOfType<AudioManager>().Play("healthlow");
+        }
         int rand = Random.Range(0, 2);
         if (rand == 1)
         {
@@ -63,7 +76,7 @@ public class Health_System : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         
         if ((other.gameObject.tag == "Potion"))
@@ -74,6 +87,14 @@ public class Health_System : MonoBehaviour
             Destroy(other.gameObject);
         }
         
+    }
+
+    void resetFlash()
+    {
+        foreach (var rend in GetComponentsInChildren<Renderer>(true))
+        {
+            rend.material.DisableKeyword("_EMISSION");
+        }
     }
 }
 

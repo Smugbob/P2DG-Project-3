@@ -6,7 +6,7 @@ public class LaserProjectile : MonoBehaviour
 {
     private Transform _transform;
     [SerializeField] private float KProjectileMoveSpeed = 10.0f;
-    int damage = 1;
+    public int damage = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,7 @@ public class LaserProjectile : MonoBehaviour
         if (gameObject.CompareTag("Spear"))
         {
             _transform.Translate(new Vector3(0.5f,0,-1));
-            damage = 5;
+            damage = 10;
         }
         
         //_transform.Rotate(Vector3.right, 90.f, 1);
@@ -44,11 +44,11 @@ public class LaserProjectile : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<LesserEnemyScript>().takeDamage();
+                other.GetComponent<LesserEnemyScript>().takeDamage(damage);
             }
             else
             {
-                other.GetComponent<GreaterEnemyScript>().takeDamage();
+                other.GetComponent<GreaterEnemyScript>().takeDamage(damage);
             }
             Destroy(gameObject);
         }

@@ -11,15 +11,12 @@ public class ShipControl1 : MonoBehaviour
 	private Camera _Camera;
 	[SerializeField] private GameObject Laser;
 	[SerializeField] private GameObject meleePrefab;
-	public int playerAttack = 1;
+	public int playerAttack = 10;
 	bool intangible = false;
 	bool attacking = false;
+	
 
-	private void Awake()
-	{
-
-	}
-
+	
 	// Cached component references
 	private Transform _shipTransform;
 	private Rigidbody2D _shipRB;
@@ -35,7 +32,8 @@ public class ShipControl1 : MonoBehaviour
 		_Camera = Camera.main;
 
 		transform.GetChild(1).gameObject.SetActive(false);
-		
+		transform.GetChild(2).gameObject.SetActive(false);
+
 
 
 	}
@@ -82,9 +80,11 @@ public class ShipControl1 : MonoBehaviour
 					FindObjectOfType<AudioManager>().Play("playerranged2");
 				}
 				transform.GetChild(0).gameObject.SetActive(false);
-				transform.GetChild(1).gameObject.SetActive(true);
+				transform.GetChild(1).gameObject.SetActive(false);
+				transform.GetChild(2).gameObject.SetActive(true);
 				Invoke("changeBackModel", 0.5f);
 				GameObject CreatedLaser = Instantiate(Laser, transform.position, transform.rotation);
+				CreatedLaser.GetComponent<LaserProjectile>().damage = 10;
 				attacking = true;
 				Invoke("delayAttack", 0.5f);
 			}
@@ -103,16 +103,23 @@ public class ShipControl1 : MonoBehaviour
 				{
 					FindObjectOfType<AudioManager>().Play("playerattack2");
 				}
+				transform.GetChild(0).gameObject.SetActive(false);
+				transform.GetChild(1).gameObject.SetActive(true);
+				transform.GetChild(2).gameObject.SetActive(false);
+				Invoke("changeBackModel", 0.39f);
 				GameObject CreatedMelee = Instantiate(meleePrefab, transform.position, transform.rotation);
+				CreatedMelee.GetComponent<MeleeScript>().damage = 10;
 				//CreatedMelee.transform.position += CreatedMelee.transform.up;
-				Destroy(CreatedMelee, 0.2f);
+				Destroy(CreatedMelee, 0.4f);
 				attacking = true;
-				Invoke("delayAttack", 0.3f);
+				Invoke("delayAttack", 0.4f);
 			}
 			
 		}
 
 		//player faces direction of movement
+
+		
 		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 		{
 			Vector3 up_pos = new Vector3(0, 0, 0);
@@ -133,9 +140,7 @@ public class ShipControl1 : MonoBehaviour
 			Vector3 right_pos = new Vector3(0, 0, -90);
 			transform.eulerAngles = right_pos;
 		}
-
-
-
+		
 
 
 	}
@@ -149,6 +154,7 @@ public class ShipControl1 : MonoBehaviour
 	{
 		transform.GetChild(0).gameObject.SetActive(true);
 		transform.GetChild(1).gameObject.SetActive(false);
+		transform.GetChild(2).gameObject.SetActive(false);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)

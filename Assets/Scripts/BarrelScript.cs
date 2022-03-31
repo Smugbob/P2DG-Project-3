@@ -26,17 +26,17 @@ public class BarrelScript : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        health -= damage;
+        health -= damage; //health is deducted when called
         if (health <= 0)
         {
-            GameObject createdAcid = Instantiate(acidPrefab, transform.position, transform.rotation);
-            onDeath();
+            GameObject createdAcid = Instantiate(acidPrefab, transform.position, transform.rotation); //create acid spill on the floor in place of the destroyed barrel
+            onDeath(); //call death function when no more health remaining
         }
     }
 
     void onDeath()
     {
         FindObjectOfType<AudioManager>().Play("explode");
-        Destroy(gameObject);
+        Destroy(gameObject); //remove the object from the environment
     }
 }

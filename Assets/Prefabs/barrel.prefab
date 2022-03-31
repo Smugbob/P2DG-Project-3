@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e7da3a476d03545be3130044f10248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 50
   acidPrefab: {fileID: 6231890466623663716, guid: 88968d9c04faa7a4484ca5802f712fc4,
     type: 3}
 --- !u!1 &2168279003127255296
@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 03fdc78f9912c0444a920f1785cb75a7, type: 2}
+  - {fileID: 2100000, guid: d52368a06cd7e9e4b9a4fd97ad7a07ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,7 +234,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 141e04437d6edda4abb8bd4c14a54abd, type: 2}
+  - {fileID: 2100000, guid: d52368a06cd7e9e4b9a4fd97ad7a07ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

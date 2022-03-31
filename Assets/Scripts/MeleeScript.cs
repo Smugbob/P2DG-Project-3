@@ -4,22 +4,37 @@ using UnityEngine;
 
 public class MeleeScript : MonoBehaviour
 {
-    public int damage = 10;
+    public int damage = 0;
     private Transform _transform;
+    private Transform _playerTransform;
     [SerializeField] private float KSlashMoveSpeed = 1f;
+    Vector3 translator;
     // Start is called before the first frame update
     void Start()
     {
         _transform = GetComponent<Transform>();
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
     }
-
+    //alpha does 20
     // Update is called once per frame
     void Update()
     {
-        Vector3 translateAmount = Vector3.up * (Time.deltaTime * KSlashMoveSpeed);
+        if (gameObject.CompareTag("Melee"))
+        {
+            Vector3 translateAmount = Vector3.up * (Time.deltaTime * KSlashMoveSpeed);
+            translator += translateAmount;
+            _transform.position = new Vector3(_playerTransform.position.x, _playerTransform.position.y, _playerTransform.position.z);
 
-        _transform.Translate(translateAmount);
+            _transform.Translate(translator);
+        }
+        else
+        {
+            Vector3 translateAmount = Vector3.up * (Time.deltaTime * KSlashMoveSpeed);
+
+            _transform.Translate(translateAmount);
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,11 +44,11 @@ public class MeleeScript : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
-                other.GetComponent<LesserEnemyScript>().takeDamage();
+                other.GetComponent<LesserEnemyScript>().takeDamage(damage);
             }
             else
             {
-                other.GetComponent<GreaterEnemyScript>().takeDamage();
+                other.GetComponent<GreaterEnemyScript>().takeDamage(damage);
             }
             //Destroy(gameObject);
         }
