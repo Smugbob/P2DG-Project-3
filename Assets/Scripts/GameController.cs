@@ -9,7 +9,9 @@ public class GameController : MonoBehaviour
     private static GameController _gameController = null;
     public int score = 0;
     private Camera _Camera;
-    public int totalSpawned = 0;
+    [SerializeField]
+    public int totalSpawned = 40; //max number of enemies that will be spawned
+    public int maxSpawned = 0;
     
 
     public enum EGameState
@@ -20,7 +22,7 @@ public class GameController : MonoBehaviour
         Gameover,
         Win
     }
-    private EGameState _eGameState = EGameState.Playing;
+    private EGameState _eGameState = EGameState.MainMenu; //game will begin at the main menu
 
     void Awake()
     {
@@ -35,40 +37,42 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _Camera = Camera.main;
-        ChangeState(EGameState.MainMenu);
+        _Camera = Camera.main; //_Camera cached as the primary one
+        GameObject.Find("HUD").GetComponent<Canvas>().enabled = false; //hide the UI whilst in the main menu
     }
 
     // Update is called once per frame
     void Update()
     {
+
+       
         switch (_eGameState)
-        {
+        { //checks made every frame depending on the current game state
             case EGameState.MainMenu:
-                _Camera.transform.position = new Vector3(50, 0, -10);
+                _Camera.transform.position = new Vector3(50, 0, -10); //move camera to main menu screen
                 if (Input.GetKeyDown(KeyCode.P))
                 {
-                    RestartGame();
+                    RestartGame(); //refresh game scene
                     ChangeState(EGameState.Playing);
                 }
                 break;
 
             case EGameState.Playing:
                 if (Input.GetKeyDown(KeyCode.Escape))
-                    ChangeState(EGameState.Paused);
-                if (totalSpawned == 0)
+                    ChangeState(EGameState.Paused); //pause the game when escape is pressed
+                if (maxSpawned >= totalSpawned)
                 {
-                    ChangeState(EGameState.Win);
+                    ChangeState(EGameState.Win); //win when there are no more enemies remaining
                 }
                 break;
 
             case EGameState.Paused:
                 if (Input.GetKeyDown(KeyCode.Escape))
-                    ChangeState(EGameState.Playing);
+                    ChangeState(EGameState.Playing); //resume back to playing if escape is pressed again
                 break;
 
             case EGameState.Gameover:
-                _Camera.transform.position = new Vector3(70, 0, -10);
+                _Camera.transform.position = new Vector3(70, 0, -10); //move camera to game over screen
                 if (Input.GetKeyDown(KeyCode.P))
                 {
                     ChangeState(EGameState.MainMenu);
@@ -76,8 +80,7 @@ public class GameController : MonoBehaviour
                 break;
 
             case EGameState.Win:
-                _Camera.transform.position = new Vector3(90, 0, -10);
-                FindObjectOfType<AudioManager>().Play("playerWin");
+                _Camera.transform.position = new Vector3(90, 0, -10); //move camera to win screen
                 if (Input.GetKeyDown(KeyCode.P))
                 {
                     ChangeState(EGameState.MainMenu);
@@ -86,31 +89,26 @@ public class GameController : MonoBehaviour
 
 
             default:
-                throw new System.ArgumentOutOfRangeException();
+                throw new System.ArgumentOutOfRangeException(); //raise exception if game is somehow in a state different to the aforementioned
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RestartGame();
-        }
 
     }
     public void ChangeState(EGameState eGameState)
     {
         Debug.Log("#Change State - " + eGameState);
-        switch (eGameState)
+        switch (eGameState) //statements to be run once depending on the game state
         {
             ////////////////////////////////////////////////////////////////
             case EGameState.MainMenu:
-                GameObject.Find("HUD").GetComponent<Canvas>().enabled = false;
-                GameObject.Find("Buttons").GetComponent<Canvas>().enabled = true;
-                Time.timeScale = 0.0f;
+                GameObject.Find("HUD").GetComponent<Canvas>().enabled = false; //hide the UI whilst in the main menu
+                GameObject.Find("Buttons").GetComponent<Canvas>().enabled = true; 
+                Time.timeScale = 0.0f; //flow of time in the game is multiplied by 0, consequently stopping anything from moving or spawning
                 break;
             ////////////////////////////////////////////////////////////////
             case EGameState.Playing:
-                FindObjectOfType<AudioManager>().Play("playerstart");
                 GameObject.Find("HUD").GetComponent<Canvas>().enabled = true;
-                Time.timeScale = 1.0f;
+                Time.timeScale = 1.0f; //resume flow of time
                 break;
             ////////////////////////////////////////////////////////////////
             case EGameState.Gameover:
@@ -151,8 +149,9 @@ public class GameController : MonoBehaviour
         
         //Load a new game scene, resetting all assets within it
         SceneManager.LoadScene("Game", LoadSceneMode.Additive);
-        
-        score = 0;
+
+        maxSpawned = 0;
+        score = 0; //reset the score
 
 
     }

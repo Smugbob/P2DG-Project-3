@@ -3284,7 +3284,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
+  - {fileID: 2100000, guid: 7032bdbb6f19edb4680db150994c1416, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3995,7 +3995,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
+  - {fileID: 2100000, guid: 7032bdbb6f19edb4680db150994c1416, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8058,7 +8058,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
+  - {fileID: 2100000, guid: 7032bdbb6f19edb4680db150994c1416, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8404,6 +8404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7420584295661366286}
+  - component: {fileID: 1259854780803680943}
   m_Layer: 0
   m_Name: enemy1_melee_standby
   m_TagString: Untagged
@@ -8489,6 +8490,45 @@ Transform:
   m_Father: {fileID: 5337228660703710518}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+--- !u!23 &1259854780803680943
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4448160211554800275}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 1624b02c6d479fa4a926ab0d342d9ff0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &4551618590651504157
 GameObject:
   m_ObjectHideFlags: 0
@@ -8909,7 +8949,7 @@ Transform:
   m_GameObject: {fileID: 4650559248010825645}
   m_LocalRotation: {x: -0.67002213, y: -0.041893795, z: 0.04625133, w: 0.73971355}
   m_LocalPosition: {x: 0.046, y: 0.851, z: -1.822}
-  m_LocalScale: {x: 0.51077104, y: 0.51077104, z: 0.51077104}
+  m_LocalScale: {x: 1, y: 1, z: 0.75}
   m_Children:
   - {fileID: 800269569183336696}
   - {fileID: 8598365426265239099}
@@ -9008,7 +9048,7 @@ GameObject:
   - component: {fileID: -725503870538886144}
   - component: {fileID: 2810170839137547043}
   - component: {fileID: 7325548356098514633}
-  - component: {fileID: -1490659010837410071}
+  - component: {fileID: -1097031847525153419}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -9048,17 +9088,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xspeed: 7
   yspeed: 1
-  health: 3
+  health: 30
   meleePrefab: {fileID: 3865905755980198526, guid: 05033820f75219f438f3a24d8d4c31d9,
     type: 3}
   rangedPrefab: {fileID: 7748853061399310108, guid: f123f5263b9fc884b820cdacb3bee5c3,
     type: 3}
   attackRate: 1.5
   attackTime: 0.1
-  damage: 1
-  effect: {fileID: 226506911691148358, guid: 979a046b7666a4344b0de92536954dd1, type: 3}
-  effect_small: {fileID: 2271017859600720414, guid: 952c61459e75e67488ba7b4b2ec7ab8e,
+  damage: 10
+  effect: {fileID: 226506911691148358, guid: a90c135bbaad12944ac3f428e767cd3d, type: 3}
+  effect_small: {fileID: 2271017859600720414, guid: e2084d38e06eea64bab4e713f7c2bf16,
     type: 3}
+  bloodPrefab: {fileID: 3901094411631334772, guid: cc9cf54984263f244b9bca71c37869f6,
+    type: 3}
+  renderer: {fileID: 0}
 --- !u!61 &2810170839137547043
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9106,7 +9149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!23 &-1490659010837410071
+--- !u!23 &-1097031847525153419
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9124,7 +9167,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1624b02c6d479fa4a926ab0d342d9ff0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9944,6 +9987,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5524978405836667283}
+  - component: {fileID: 6807755651786129999}
   m_Layer: 0
   m_Name: enemy1_melee_attack
   m_TagString: Untagged
@@ -10028,6 +10072,45 @@ Transform:
   m_Father: {fileID: 5337228660703710518}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+--- !u!23 &6807755651786129999
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5181244290087084841}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b0630a6637a75cf448e123b9314a12c5, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &5301204339412336796
 GameObject:
   m_ObjectHideFlags: 0
@@ -11301,6 +11384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5982904206230541532}
+  - component: {fileID: 7880764991140372286}
   m_Layer: 0
   m_Name: enemy1_ranged
   m_TagString: Untagged
@@ -11324,6 +11408,45 @@ Transform:
   m_Father: {fileID: 5337228660703710518}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
+--- !u!23 &7880764991140372286
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6362560437099138662}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a7102cc89c9bc154d8f84580779a396f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &6476171459671875278
 GameObject:
   m_ObjectHideFlags: 0

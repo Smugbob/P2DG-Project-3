@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461dee6bd0a0c45408541e660e6991a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPrefab1: {fileID: 479427774763610868, guid: afaff75eee1c32f4d8cc05fa9f74ecf7,
+  objectPrefab1: {fileID: 4004555052203198173, guid: 1e9a9bfa6b2b97746997503aea745eb3,
     type: 3}
-  objectPrefab2: {fileID: 147990335444658918, guid: b88652e7cf41a874082b6e1d43d07896,
+  objectPrefab2: {fileID: 1952173871297720721, guid: 9642005205b4a6d4781e589dd5747e48,
     type: 3}

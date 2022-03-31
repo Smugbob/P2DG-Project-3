@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
+  - {fileID: 2100000, guid: 7032bdbb6f19edb4680db150994c1416, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
+  - {fileID: 2100000, guid: 7032bdbb6f19edb4680db150994c1416, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +216,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9181a8ebe12c2ef4fb56974dc306ad02, type: 2}
+  - {fileID: 2100000, guid: 7032bdbb6f19edb4680db150994c1416, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -265,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 7748853061399310108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 1.5, z: 2}
   m_Children:
   - {fileID: 3319422730019233637}
   m_Father: {fileID: 0}
@@ -330,11 +330,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.3408647, y: 0.40916812}
-      - {x: -0.3753742, y: 0.33174124}
-      - {x: -0.3908412, y: 0.07723081}
-      - {x: -0.32118684, y: 0.03178233}
-      - {x: -0.26090658, y: 0.18782079}
+    - - {x: -0.32983264, y: 0.38214013}
+      - {x: -0.33106297, y: 0.38341224}
+      - {x: -0.3429004, y: 0.31236696}
+      - {x: -0.3711249, y: 0.2013244}
+      - {x: -0.33099827, y: 0.08684981}
+      - {x: -0.28884545, y: 0.19921398}
 --- !u!1 &9098454607347154038
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,7 @@ public class LesserEnemyScript : MonoBehaviour
     private GameObject slainCount;
     public GameObject effect;
     public GameObject effect_small;
+    public GameObject bloodPrefab;
 
     private enum attackType
     {
@@ -75,6 +76,7 @@ public class LesserEnemyScript : MonoBehaviour
         else
         {
             minDist = 4.0f;
+            health = 20;
             //InvokeRepeating("rangedAttack", attackTime * 2, attackRate);
         }
 
@@ -244,6 +246,7 @@ public class LesserEnemyScript : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(false);
         transform.GetChild(1).gameObject.SetActive(true);
         createdAttack = Instantiate(meleePrefab, _transform.position, _transform.rotation);
+        createdAttack.GetComponent<MeleeScript>().damage = damage;
         createdAttack.transform.position += createdAttack.transform.up / 2;
         Destroy(createdAttack, 0.2f);
     }
@@ -269,14 +272,23 @@ public class LesserEnemyScript : MonoBehaviour
         }
         //Quaternion rotation = Quaternion.Euler(getDirection()[0] + 90, 90, 90);
         createdAttack = Instantiate(rangedPrefab, _transform.position, _transform.rotation);
+        createdAttack.GetComponent<LaserProjectile>().damage = damage / 2;
         //Destroy(createdAttack, 5);
     }
 
-    public void takeDamage()
+    public void takeDamage(int damage)
     {
 
+        //health -= _player.GetComponent<ShipControl1>().playerAttack;
         Instantiate(effect_small, transform.position, Quaternion.identity);
-        health -= _player.GetComponent<ShipControl1>().playerAttack;
+        health -= damage;
+        foreach (var rend in GetComponentsInChildren<Renderer>(true))
+        {
+            rend.material.EnableKeyword("_EMISSION");
+        }
+        Invoke("resetFlash", 0.25f);
+        //Time.timeScale = 0.025f;
+        //Invoke("resetHitlag", 0.0025f);
         if (attack == attackType.Melee) 
         {
             int rand = Random.Range(0, 2);
@@ -301,7 +313,7 @@ public class LesserEnemyScript : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("rangeddamage2");
             }
         }
-        if (health == 0)
+        if (health <= 0)
         {
             onDeath();
         }
@@ -310,7 +322,9 @@ public class LesserEnemyScript : MonoBehaviour
 
     void onDeath()
     {
+        _gameController.maxSpawned += 1;
         Instantiate(effect, transform.position, Quaternion.identity);
+        GameObject createdBlood = Instantiate(bloodPrefab, _transform.position, _transform.rotation);
         if (attack == attackType.Melee)
         {
             FindObjectOfType<AudioManager>().Play("meleedeath");
@@ -320,9 +334,8 @@ public class LesserEnemyScript : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("rangeddeath");
         }
         _gameController.score += 10;
-        _gameController.totalSpawned -= 1;
-        slainCount.GetComponent<KnightsSlain>().knightsSlain += 1;
-        Debug.Log(_gameController.totalSpawned);
+        slainCount.GetComponent<KnightsSlain>().knightsSlain = _gameController.maxSpawned;
+        Debug.Log(_gameController.maxSpawned);
         Destroy(gameObject);
     }
 
@@ -397,6 +410,19 @@ public class LesserEnemyScript : MonoBehaviour
     void changeBackSpear()
     {
         transform.GetChild(3).gameObject.SetActive(true);
+    }
+
+    void resetFlash()
+    {
+        foreach (var rend in GetComponentsInChildren<Renderer>(true))
+        {
+            rend.material.DisableKeyword("_EMISSION");
+        }
+    }
+
+    void resetHitlag()
+    {
+        Time.timeScale = 1.0f;
     }
 
     

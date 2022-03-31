@@ -16,6 +16,6 @@ public class displayScore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        txt.text = _gameController.score.ToString();
+        txt.text = _gameController.score.ToString(); //converts the stored score into text and is drawn to the screen
     }
 }

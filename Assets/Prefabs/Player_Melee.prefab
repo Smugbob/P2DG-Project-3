@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ffc8e7ed7b11ff547ab2b75348c9f421, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7dd0ed7c86f2b1a4391adf35473d0555, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,15 +108,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.215812, y: 0.7539675}
-      - {x: -0.7912551, y: 0.5203488}
+    - - {x: -0.19146788, y: 0.67485034}
+      - {x: -0.7486538, y: 0.47166148}
       - {x: -1.2253385, y: 0.055435006}
       - {x: -0.044999998, y: -0.26999998}
       - {x: 0.035, y: -0.26999998}
       - {x: 0.044999998, y: -0.19}
       - {x: 1.2300483, y: 0.01656197}
-      - {x: 1.0787904, y: 0.30428523}
-      - {x: 0.21581198, y: 0.79667056}
+      - {x: 0.9727037, y: 0.29449514}
+      - {x: 0.72580695, y: 0.53555036}
+      - {x: 0.20972626, y: 0.68103814}
 --- !u!114 &-563767256370909424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,5 +130,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19debe43b2f593e4dbf03d8638f05d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  KSlashMoveSpeed: 4
+  damage: 10
+  KSlashMoveSpeed: 3

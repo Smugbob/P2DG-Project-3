@@ -17,6 +17,8 @@ public class SpawnEnemyTile : MonoBehaviour
     private int spawnCount;
     private int rand = 0;
     private GameController _gameController;
+    public GameObject bloodPrefab;
+    private Transform trapdoorTransform;
 
     private void spawnEnemy()
     {
@@ -36,6 +38,7 @@ public class SpawnEnemyTile : MonoBehaviour
         Vector3 randomWorldPos = _camera.ScreenToWorldPoint(randomCamPoint);
         */
 
+        trapdoorTransform.localRotation = Quaternion.Euler(90, 0, 0);
         rand = Random.Range(0, 10);
         if (rand == 1)
         {
@@ -46,6 +49,7 @@ public class SpawnEnemyTile : MonoBehaviour
         {
             GameObject createdEnemy = Instantiate(enemyPrefab, _ourTransform.position, _ourTransform.rotation);
         }
+        Invoke("resetTrapdoor", 0.25f);
             
 
         //decrement spawn count, override finite spawning if 999
@@ -63,9 +67,11 @@ public class SpawnEnemyTile : MonoBehaviour
         //cached components
         _ourTransform = GetComponent<Transform>();
         _camera = Camera.main;
-        _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
         Debug.Assert(_camera, this.gameObject);
-        _gameController.totalSpawned += (spawnCount / 2);
+        _gameController = GameObject.Find("GameManager").GetComponent<GameController>();
+       // _gameController.totalSpawned += toBeSpawned / 2;
+        trapdoorTransform = GetComponentInChildren<Transform>();
+        trapdoorTransform.position += new Vector3(0, 0, 0.4f);
 
 
 
@@ -76,9 +82,19 @@ public class SpawnEnemyTile : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void resetTrapdoor()
+    {
+        trapdoorTransform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 }
