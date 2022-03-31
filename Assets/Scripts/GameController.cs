@@ -10,7 +10,8 @@ public class GameController : MonoBehaviour
     public int score = 0;
     private Camera _Camera;
     [SerializeField]
-    public int totalSpawned = 0; //max number of enemies that will be spawned
+    public int totalSpawned = 40; //max number of enemies that will be spawned
+    public int maxSpawned = 0;
     
 
     public enum EGameState
@@ -59,7 +60,7 @@ public class GameController : MonoBehaviour
             case EGameState.Playing:
                 if (Input.GetKeyDown(KeyCode.Escape))
                     ChangeState(EGameState.Paused); //pause the game when escape is pressed
-                if (totalSpawned <= 0)
+                if (maxSpawned >= totalSpawned)
                 {
                     ChangeState(EGameState.Win); //win when there are no more enemies remaining
                 }
@@ -148,7 +149,8 @@ public class GameController : MonoBehaviour
         
         //Load a new game scene, resetting all assets within it
         SceneManager.LoadScene("Game", LoadSceneMode.Additive);
-        
+
+        maxSpawned = 0;
         score = 0; //reset the score
 
 

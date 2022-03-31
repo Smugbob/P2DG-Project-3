@@ -322,7 +322,7 @@ public class LesserEnemyScript : MonoBehaviour
 
     void onDeath()
     {
-        
+        _gameController.maxSpawned += 1;
         Instantiate(effect, transform.position, Quaternion.identity);
         GameObject createdBlood = Instantiate(bloodPrefab, _transform.position, _transform.rotation);
         if (attack == attackType.Melee)
@@ -334,9 +334,8 @@ public class LesserEnemyScript : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("rangeddeath");
         }
         _gameController.score += 10;
-        _gameController.totalSpawned -= 1;
-        slainCount.GetComponent<KnightsSlain>().knightsSlain += 1;
-        Debug.Log(_gameController.totalSpawned);
+        slainCount.GetComponent<KnightsSlain>().knightsSlain = _gameController.maxSpawned;
+        Debug.Log(_gameController.maxSpawned);
         Destroy(gameObject);
     }
 

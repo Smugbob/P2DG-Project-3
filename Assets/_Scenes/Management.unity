@@ -380,7 +380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  totalSpawned: 40
+  totalSpawned: 39
+  maxSpawned: 0
 --- !u!4 &171434139
 Transform:
   m_ObjectHideFlags: 0

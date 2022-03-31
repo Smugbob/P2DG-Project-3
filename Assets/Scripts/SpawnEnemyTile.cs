@@ -57,7 +57,7 @@ public class SpawnEnemyTile : MonoBehaviour
             spawnCount -= 1;
 
         //stop repeated function when count is done
-        if (spawnCount == 0)
+        if (spawnCount <= 0)
             CancelInvoke("spawnEnemy");
 
     }

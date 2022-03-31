@@ -155,14 +155,14 @@ public class GreaterEnemyScript : MonoBehaviour
 
     void onDeath()
     {
-        Time.timeScale = 1.0f;
+        _gameController.maxSpawned += 1;
         Instantiate(effect, transform.position, Quaternion.identity);
         GameObject createdBlood = Instantiate(bloodPrefab, _transform.position, _transform.rotation);
         createdBlood.transform.localScale += new Vector3(0.5f, 0.5f, 0);
         _gameController.score += 50;
-        _gameController.totalSpawned -= 1;
-        slainCount.GetComponent<KnightsSlain>().knightsSlain += 1;
-        Debug.Log(_gameController.totalSpawned);
+
+        slainCount.GetComponent<KnightsSlain>().knightsSlain = _gameController.maxSpawned;
+        Debug.Log(_gameController.maxSpawned);
         FindObjectOfType<AudioManager>().Play("alphadeath");
         GameObject createdPotion = Instantiate(potionPrefab, _transform.position, potionPrefab.transform.rotation);
         Time.timeScale = 1.0f;
